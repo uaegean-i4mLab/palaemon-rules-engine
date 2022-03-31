@@ -86,6 +86,7 @@ public class TestRuleServices {
         Passenger passenger = new Passenger();
         passenger.setDeck("Deck1");
         passenger.setGeofence("geofence1");
+        passenger.setHealthConditions(new ArrayList<>());
         List<String> blockedGeofences = new ArrayList<>();
         blockedGeofences.add("g6");
 
@@ -123,6 +124,55 @@ public class TestRuleServices {
 
        PassengerAssignment assignment = musterAssignmentService.getAssignment(passenger,  blockedGeofences, availablePaths );
        System.out.println(assignment.getPathId());
+
+    }
+
+    @Test
+    public void testAssignmentsHealthConditions(){
+        //Passenger passenger, List<String> blockedGeofences, SetOfPaths availablePaths
+        Passenger passenger = new Passenger();
+        passenger.setDeck("Deck1");
+        passenger.setGeofence("geofence1");
+        ArrayList<String> healthConditions = new ArrayList();
+        healthConditions.add("stretcher");
+        passenger.setHealthConditions(healthConditions);
+        List<String> blockedGeofences = new ArrayList<>();
+        blockedGeofences.add("g6");
+
+        SetOfPaths availablePaths = new SetOfPaths();
+        Path p1 = new Path();
+        List<String> p1Geofence = new ArrayList<>();
+        p1Geofence.add("g1");
+        p1Geofence.add("g2");
+        p1.setGeofences(p1Geofence);
+        p1.setPathId("PATH_1");
+        p1.setPreferred(false);
+
+        Path p2 = new Path();
+        List<String> p2Geofence = new ArrayList<>();
+        p2Geofence.add("g1");
+        p2Geofence.add("g3");
+        p2.setGeofences(p2Geofence);
+        p2.setPathId("PATH_2");
+        p2.setPreferred(false);
+
+        Path p3 = new Path();
+        List<String> p3Geofence = new ArrayList<>();
+        p3Geofence.add("g1");
+        p3Geofence.add("g5");
+        p3.setGeofences(p3Geofence);
+        p3.setPathId("PATH_3");
+        p3.setPreferred(true);
+
+        List<Path> listOfPaths = new ArrayList<>();
+        listOfPaths.add(p1);
+        listOfPaths.add(p2);
+        listOfPaths.add(p3);
+
+        availablePaths.setPaths(listOfPaths);
+
+        PassengerAssignment assignment = musterAssignmentService.getAssignment(passenger,  blockedGeofences, availablePaths );
+        System.out.println(assignment.getAction());
 
     }
 

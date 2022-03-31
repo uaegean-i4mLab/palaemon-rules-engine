@@ -3,6 +3,7 @@ package gr.aegean.palaemon.rulesengine.model;
 public class MessageBodyResponse {
 
     private String content;
+    private String visualAid;
 
     public MessageBodyResponse(String conent) {
         this.content = conent;
@@ -18,5 +19,13 @@ public class MessageBodyResponse {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getVisualAid() {
+        return visualAid;
+    }
+
+    public void setVisualAid(String visualAid) {
+        this.visualAid = visualAid;
     }
 }

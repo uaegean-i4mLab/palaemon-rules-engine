@@ -1,0 +1,73 @@
+package gr.aegean.palaemon.rulesengine.rules;
+
+import gr.aegean.palaemon.rulesengine.model.PassengerAssignment;
+import gr.aegean.palaemon.rulesengine.model.Passenger;
+import gr.aegean.palaemon.rulesengine.model.Path;
+import java.util.List;
+
+
+global PassengerAssignment passengerAssignment;
+
+
+
+rule "assignment_requires_medical_assistance"
+    salience 40 //rule order execution
+    activation-group "x" // group of rules, if one fires successfully no more will be fired
+	when
+	    //check the deck and geofence
+	    $passenger: Passenger(deck.equals("Deck1") && (geofence.equals("geofence1") || geofence.equals("geofence2")  ) )
+	    eval($passenger.requiresMedicalAssistance())
+	    // passenger health conditions are ok
+	then
+		passengerAssignment.setAction("WAIT");
+		passengerAssignment.setMusterStation("MUSTERSTATION_1");
+
+end
+
+
+
+// rule for Deck1, Geofences 1,2
+rule "assignment_r1_d1_g1_g2_existsFreePath_primary"
+    salience 30 //rule order execution
+    activation-group "x" // group of rules, if one fires successfully no more will be fired
+	when
+	    //check the deck and geofence
+	    $passenger: Passenger(deck.equals("Deck1") && (geofence.equals("geofence1") || geofence.equals("geofence2")  ) )
+	    // path geofences are not blocked
+	    $availablePath: Path()
+	    $blocked: List()
+	    eval( !$availablePath.containsGeofence($blocked))
+	    //ensure that if an assignment has already been made
+	    //by the execution of a previous rule, we do not re-assign it
+	    eval(passengerAssignment.getPathId() == null)
+	    eval($availablePath.isPreferred())
+	    // passenger health conditions are ok
+	then
+		System.out.println("Hey It worked!");
+		passengerAssignment.setAction("FOLLOW");
+		passengerAssignment.setMusterStation("MUSTERSTATION_1");
+		passengerAssignment.setPathId($availablePath.getPathId());
+end
+
+
+// rule for Deck1, Geofences 1,2
+rule "assignment_r1_d1_g1_g2_existsFreePath"
+	salience 20 //rule order execution
+	activation-group "x" // group of rules, if one fires successfully no more will be fired
+	when
+	    //check the deck and geofence
+	    $passenger: Passenger(deck.equals("Deck1") && (geofence.equals("geofence1") || geofence.equals("geofence2")  ) )
+	    // path geofences are not blocked
+	    $availablePath: Path()
+	    $blocked: List()
+	    eval( !$availablePath.containsGeofence($blocked))
+	    //ensure that if an assignment has already been made
+	    //by the execution of a previous rule, we do not re-assign it
+	    eval(passengerAssignment.getPathId() == null)
+	    // passenger health conditions are ok
+	then
+		System.out.println("Hey It worked!");
+		passengerAssignment.setAction("FOLLOW");
+		passengerAssignment.setMusterStation("MUSTERSTATION_1");
+		passengerAssignment.setPathId($availablePath.getPathId());
+end
