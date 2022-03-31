@@ -1,11 +1,12 @@
 package gr.aegean.palaemon.rulesengine.controllers;
 
-import gr.aegean.palaemon.rulesengine.model.MessageBodyRequest;
-import gr.aegean.palaemon.rulesengine.model.MessageBodyResponse;
-import gr.aegean.palaemon.rulesengine.model.MessageObject;
-import gr.aegean.palaemon.rulesengine.model.PhaseTask;
+import gr.aegean.palaemon.rulesengine.model.*;
+import gr.aegean.palaemon.rulesengine.model.pojo.PassengerAssignmentRequest;
+import gr.aegean.palaemon.rulesengine.model.pojo.PassengerAssignmentResponse;
 import gr.aegean.palaemon.rulesengine.model.pojo.PassengerMessageBodyRequests;
 import gr.aegean.palaemon.rulesengine.service.MessageBodyService;
+import gr.aegean.palaemon.rulesengine.service.MusterAssignmentService;
+import gr.aegean.palaemon.rulesengine.service.PathReaderService;
 import gr.aegean.palaemon.rulesengine.service.TaskRuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,12 @@ public class RuleControllers {
     @Autowired
     MessageBodyService messageBodyService;
 
+    @Autowired
+    MusterAssignmentService musterAssignmentService;
+
+    @Autowired
+    PathReaderService pathReaderService;
+
     @GetMapping("/getMessageObject")
     public @ResponseBody
     MessageObject getMessageObject(@RequestParam String phase, @RequestParam String taskId) {
@@ -40,9 +47,9 @@ public class RuleControllers {
     }
 
     @PostMapping("/fetchMessageBody")
-    public @ResponseBody  List<Map<String, String>> getMessageBody(@RequestBody PassengerMessageBodyRequests messageBodyRequests) {
+    public @ResponseBody
+    List<Map<String, String>> getMessageBody(@RequestBody PassengerMessageBodyRequests messageBodyRequests) {
         List<Map<String, String>> result = new ArrayList<>();
-
         messageBodyRequests.getPassengerLanguages().keySet().forEach(passengerLanguageKey -> {
             String assignedPathId = messageBodyRequests.getAssignedPathIDs().get(passengerLanguageKey);
             String messageCode = messageBodyRequests.getMessageCodes().get(passengerLanguageKey);
@@ -58,19 +65,36 @@ public class RuleControllers {
                 requests.setAction(passengerAction);
                 requests.setLanguage(passengerLanguage);
                 requests.setMusteringStation(musterStation);
-
                 MessageBodyResponse mbResponse = new MessageBodyResponse();
                 messageBodyService.getMessageBody(requests, mbResponse);
-
                 Map<String, String> resultEntry = new HashMap<>();
                 resultEntry.put("hashedMacAddress", passengerLanguageKey);
                 resultEntry.put("content", mbResponse.getContent());
                 resultEntry.put("visualAid", mbResponse.getVisualAid());
                 result.add(resultEntry);
             }
-
-
         });
         return result;
     }
+
+    @PostMapping("/fetchMusteringActions")
+    public @ResponseBody
+    List<PassengerAssignmentResponse> fetchMusteringActions(@RequestBody PassengerAssignmentRequest request) {
+
+        SetOfPaths availablePaths = pathReaderService.getAllAvailablePaths();
+        List<PassengerAssignmentResponse> assignments = new ArrayList<>();
+        request.getPassengers().forEach(passenger -> {
+            PassengerAssignment passengerAssignment = musterAssignmentService.getAssignment(passenger, request.getBlocked(), availablePaths);
+            PassengerAssignmentResponse singleResponse = new PassengerAssignmentResponse();
+            singleResponse.setMusterStation(passengerAssignment.getMusterStation());
+            singleResponse.setHashedMacAddress(passenger.getHashedMacAddress());
+            singleResponse.setAction(passengerAssignment.getAction());
+            singleResponse.setPathId(passengerAssignment.getPathId());
+            assignments.add(singleResponse);
+        });
+
+        return assignments;
+    }
+
+
 }

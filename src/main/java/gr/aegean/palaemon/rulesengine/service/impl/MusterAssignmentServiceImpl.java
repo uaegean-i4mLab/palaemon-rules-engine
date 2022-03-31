@@ -14,23 +14,22 @@ import java.util.List;
 @Service
 public class MusterAssignmentServiceImpl implements MusterAssignmentService {
 
-    private KieSession kieSession=new DroolsConfig().getKieSession();
+    private KieSession kieSession = new DroolsConfig().getKieSession();
 
     @Override
     public PassengerAssignment getAssignment(Passenger passenger, List<String> blockedGeofences, SetOfPaths availablePaths) {
         PassengerAssignment assignment = new PassengerAssignment();
-        boolean preferableFree = true;
-
         kieSession.insert(passenger);
         kieSession.insert(blockedGeofences);
         // add all available path to the knowledge base
+        //TODO maybe only add here the paths that start or pass from the current passenger geofence
         availablePaths.getPaths().forEach(path -> kieSession.insert(path));
 
-        kieSession.setGlobal("passengerAssignment",assignment);
+        kieSession.setGlobal("passengerAssignment", assignment);
 
         kieSession.fireAllRules();
 //        System.out.println(phaseTask.getMessageObject());
 
-        return  assignment;
+        return assignment;
     }
 }
