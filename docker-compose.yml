@@ -1,0 +1,11 @@
+
+version: '2'
+services:
+  palaemon-rules-engine:
+    image:  endimion13/palaemon-rules-engine:0.0.1a
+    environment:
+      - PATHS_CSV=/csvs/paths.csv
+    ports:
+      - 8091:8080
+    volumes:
+      - /home/ni/code/java/rulesengine/src/main/resources/:/csvs

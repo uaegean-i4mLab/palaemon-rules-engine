@@ -61,6 +61,8 @@ public class TestRuleServices {
         //Passenger passenger, List<String> blockedGeofences, SetOfPaths availablePaths
         Passenger passenger = new Passenger();
         passenger.setDeck("Deck1");
+        passenger.setGeofence("geofence1");
+        passenger.setHealthConditions(new ArrayList<>());
         List<String> blockedGeofences = new ArrayList<>();
         blockedGeofences.add("g4");
 
