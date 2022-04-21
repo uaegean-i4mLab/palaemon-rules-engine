@@ -15,12 +15,13 @@ rule "assignment_requires_medical_assistance"
     activation-group "x" // group of rules, if one fires successfully no more will be fired
 	when
 	    //check the deck and geofence
-	    $passenger: Passenger(deck.equals("Deck1") && (geofence.equals("geofence1") || geofence.equals("geofence2")  ) )
+	    $passenger: Passenger(deck.equals("Deck1") && (geofence.equals("geofence1.1") || geofence.equals("geofence2")  ) )
 	    eval($passenger.requiresMedicalAssistance())
 	    // passenger health conditions are ok
 	then
 		passengerAssignment.setAction("WAIT");
 		passengerAssignment.setMusterStation("MUSTERSTATION_1");
+		passengerAssignment.setPathId("");
 
 end
 
@@ -32,7 +33,7 @@ rule "assignment_r1_d1_g1_g2_existsFreePath_primary"
     activation-group "x" // group of rules, if one fires successfully no more will be fired
 	when
 	    //check the deck and geofence
-	    $passenger: Passenger(deck.equals("Deck1") && (geofence.equals("geofence1") || geofence.equals("geofence2")  ) )
+	    $passenger: Passenger(deck.equals("Deck1") && (geofence.equals("geofence1.1") || geofence.equals("geofence2")  ) )
 	    // path geofences are not blocked
 	    $availablePath: Path()
 	    $blocked: List()
@@ -56,7 +57,7 @@ rule "assignment_r1_d1_g1_g2_existsFreePath"
 	activation-group "x" // group of rules, if one fires successfully no more will be fired
 	when
 	    //check the deck and geofence
-	    $passenger: Passenger(deck.equals("Deck1") && (geofence.equals("geofence1") || geofence.equals("geofence2")  ) )
+	    $passenger: Passenger(deck.equals("Deck1") && (geofence.equals("geofence1.1") || geofence.equals("geofence2")  ) )
 	    // path geofences are not blocked
 	    $availablePath: Path()
 	    $blocked: List()

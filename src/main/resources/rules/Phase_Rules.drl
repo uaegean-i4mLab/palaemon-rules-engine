@@ -19,3 +19,36 @@ rule "r1"
 		messageObject.setType("t1");
 end
 
+rule "r2"
+	when
+		PhaseTask(phase.equals("4"))
+		PhaseTask(task.equals("4.1"))
+	then
+		messageObject.setMessageCode("4.1");
+		messageObject.setAudience("crew");
+end
+
+rule "r3"
+	when
+		PhaseTask(phase.equals("5"))
+		PhaseTask(task.equals("5.1"))
+	then
+		messageObject.setMessageCode("5.1");
+		messageObject.setAudience("passengers");
+end
+
+rule "r4"
+	when
+		PhaseTask(task.equals("6.2"))
+	then
+		messageObject.setMessageCode("6.2");
+		messageObject.setAudience("passengers");
+end
+
+rule "r5"
+	when
+		PhaseTask(task.equals("6.3"))
+	then
+		messageObject.setMessageCode("6.3");
+		messageObject.setAudience("passengers");
+end

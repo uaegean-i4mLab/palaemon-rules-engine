@@ -57,7 +57,7 @@ public class RuleControllers {
             String passengerAction = messageBodyRequests.getActions().get(passengerLanguageKey);
             String musterStation = messageBodyRequests.getMusterStation().get(passengerLanguageKey);
 
-            if (assignedPathId != null && messageCode != null && passengerLanguage != null && passengerAction != null) {
+//            if (assignedPathId != null && messageCode != null && passengerLanguage != null && passengerAction != null) {
                 MessageBodyRequest requests = new MessageBodyRequest();
                 requests.setBlockedGeofences(messageBodyRequests.getBlockedGeofences());
                 requests.setMessageCode(messageCode);
@@ -72,7 +72,7 @@ public class RuleControllers {
                 resultEntry.put("content", mbResponse.getContent());
                 resultEntry.put("visualAid", mbResponse.getVisualAid());
                 result.add(resultEntry);
-            }
+//            }
         });
         return result;
     }

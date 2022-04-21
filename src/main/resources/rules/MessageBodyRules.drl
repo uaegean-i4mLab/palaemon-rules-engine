@@ -8,11 +8,63 @@ global MessageBodyResponse messageBodyRes;
 
 
 
+
+
+rule "MessageBody_r1_Stay_not_gr"
+	when
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("WAIT"))
+
+	then
+		messageBodyRes.setContent("Please remain in your position and a Crew member will assist you to reach MusterStation 1");
+end
+
+rule "Assume_EMERGENCY_Positions"
+	when
+		MessageBodyRequest(messageCode.equals("4.1"))
+	then
+		messageBodyRes.setContent("ASSUME PREDEFINED EMERGENCY POSITIONS ASAP");
+end
+
+rule "Alert_Passengers_en"
+	when
+		MessageBodyRequest(messageCode.equals("5.1"))
+		MessageBodyRequest(!language.equals("gr"))
+	then
+		messageBodyRes.setContent("The Vessel is about to go into evacuation mode please be ready");
+end
+
+rule "Alert_Passengers_gr"
+	when
+		MessageBodyRequest(messageCode.equals("5.1"))
+		MessageBodyRequest(language.equals("gr"))
+	then
+		messageBodyRes.setContent("ΠΡΟΣΟΧΗ το πλοιπο πρόκειται να εκκενοθεί. Δεν πρόκειται για άσκηση");
+end
+
+rule "Inform_Passengers_gr"
+	when
+		MessageBodyRequest(messageCode.equals("6.2"))
+		MessageBodyRequest(language.equals("gr"))
+	then
+		messageBodyRes.setContent("Φορέστε τα σωσίβια");
+end
+
+rule "Inform_Passengers_en"
+	when
+		MessageBodyRequest(messageCode.equals("6.2"))
+		MessageBodyRequest(!language.equals("gr"))
+	then
+		messageBodyRes.setContent("Put your life jackets on");
+end
+
+
 rule "MessageBody_r1_Follow_en"
 	when
-		MessageBodyRequest(language.equals("en"))
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
 		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("MUSTER_STATION_1"))
+		MessageBodyRequest(musteringStation.equals("MUSTERSTATION_1"))
 		MessageBodyRequest(pathId.equals("PATH_1"))
 	then
 		messageBodyRes.setContent("Please follow the predefined path to Muster Station 1");
@@ -20,20 +72,11 @@ end
 
 rule "MessageBody_r1_Follow_gr"
 	when
+	    MessageBodyRequest(messageCode.equals("6.3"))
 		MessageBodyRequest(language.equals("gr"))
 		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("MUSTER_STATION_1"))
+		MessageBodyRequest(musteringStation.equals("MUSTERSTATION_1"))
 		MessageBodyRequest(pathId.equals("PATH_1"))
 	then
 		messageBodyRes.setContent("Ακολουθήστε τον προκαθορισμένο δρόμο διαφυφής για το Σταθμό Συγκέτρωσης 1");
-end
-
-rule "MessageBody_r1_Stay_gr"
-	when
-		MessageBodyRequest(language.equals("en"))
-		MessageBodyRequest(action.equals("WAIT"))
-		MessageBodyRequest(musteringStation.equals("MUSTER_STATION_1"))
-		MessageBodyRequest(pathId.equals("PATH_1"))
-	then
-		messageBodyRes.setContent("Please remain in your position and a Crew member will assist you to reach MusterStation 1");
 end
