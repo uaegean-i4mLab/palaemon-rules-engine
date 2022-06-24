@@ -1,3 +1,38 @@
-preferred,PATH_1,geofence1.1,geofence1.2,geofence1.3,geofence1.4,geofence1.5
-notPreferred,PATH_2,geofence2.1,geofence2.2,geofence2.3,geofence2.4,geofence2.5
-notPreferred,PATH_3,geofence3.1,geofence3.2,geofence3.3,geofence3.4,geofence3.5
+preferred,PATH_1,geofence 6,geofence 2,
+notPreferred,PATH_2,geofence 6,geofence 5,geofence 4,geofence 1,Muster Station,
+notPreferred,PATH_3,geofence 2,geofence 6,geofence 5,geofence 4,geofence 1,Muster Station,
+preferred,PATH_4,geofence 2,
+
+
+preferred,PATH_P1,9BG1,S9-8.1,S8-7.1,S7-6.1,7BG4,7BG5,7BG6,
+preferred,PATH_P2,8G1,S8-7.1,S7-6.1,7BG4,7BG5,7BG6,
+preferred,PATH_P3,8G2,S8-7.1,S7-6.1,7BG4,7BG5,7BG6,
+preferred,PATH_P4,8G3,S8-7.1,S7-6.1,7BG4,7BG5,7BG6,
+preferred,PATH_P5,8G3,S8-7.1,S7-6.1,7BG4,7BG5,7BG6,
+preferred,PATH_P6,8G5,S8-7.1,S7-6.1,7BG4,7BG5,7BG6,
+preferred,PATH_P7,8G6,S8-7.2,7BG1,7BG2,7BG3,7BG4,7BG5,7BG6,
+preferred,PATH_P8,8G7,S8-7.2,7BG1,7BG2,7BG3,7BG4,7BG5,7BG6,
+preferred,PATH_P9,8G8,S8-7.3,7BG1,7BG2,7BG3,7BG4,7BG5,7BG6,
+preferred,PATH_P10,8G9,S8-7.3,7BG1,7BG2,7BG3,7BG4,7BG5,7BG6,
+preferred,PATH_P11,8G10,S8-7.3,7BG1,7BG2,7BG3,7BG4,7BG5,7BG6,
+preferred,PATH_P12,7DG1,7DG2,7DG3,7DG4,
+preferred,PATH_P13,7DG2,7DG3,7DG4,
+preferred,PATH_P14,7DG3,7DG4,
+preferred,PATH_P15,7DG4,
+notPreferred,PATH_P16,7DG3,7CG1,7CG2,7BG1,7BG2,7BG6,
+notPreferred,PATH_P17,7CG1,7CG2,7BG1,7BG2,7BG6,
+notPreferred,PATH_P18,7CG2,7BG1,7BG2,7BG6,
+preferred,PATH_P19,7BG1,7BG2,7BG5,7BG6,
+preferred,PATH_P20,7BG2,7BG5,7BG6,
+preferred,PATH_P21,7BG3,7BG2,7BG5,7BG6,
+preferred,PATH_P22,7BG5,7BG6,
+preferred,PATH_P23,7BG6,
+
+notPreferred,PATH_P24,7DG1,7DG2,7DG3,7CG1,7CG2,7BG1,7BG2,7BG6,
+notPreferred,PATH_P25,7DG2,7DG3,7CG1,7CG2,7BG1,7BG2,7BG6,
+
+
+
+
+
+

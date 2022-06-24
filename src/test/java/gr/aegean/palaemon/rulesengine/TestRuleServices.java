@@ -35,6 +35,16 @@ public class TestRuleServices {
     }
 
     @Test
+    public void testExecutionOfRules6_2() {
+        PhaseTask task = new PhaseTask();
+        task.setTask("6.2");
+        task.setPhase("6");
+        MessageObject mo = new MessageObject();
+        taskRuleService.getMessageObject(task, mo);
+        System.out.println(mo.toString());
+    }
+
+    @Test
     public void testAssignMessageBodyRules() {
         MessageBodyRequest req = new MessageBodyRequest();
         req.setAction("FOLLOW");
@@ -54,6 +64,50 @@ public class TestRuleServices {
 
 
     }
+
+
+    @Test
+    public void testAssignMessageBodyRules6_2() {
+        MessageBodyRequest req = new MessageBodyRequest();
+        req.setAction("");
+        req.setMessageCode("6.2");
+        req.setLanguage("en");
+        req.setPathId("");
+        req.setMusteringStation("");
+        ArrayList<String> blocked = new ArrayList<>();
+
+        MessageBodyResponse response = new MessageBodyResponse();
+
+
+        messageBodyService.getMessageBody(req,response);
+//        System.out.println(response.getContent());
+
+
+    }
+
+    @Test
+    public void testAssignMessageBodyRules4_1() {
+        MessageBodyRequest req = new MessageBodyRequest();
+        req.setAction("FOLLOW");
+        req.setMessageCode("1");
+        req.setLanguage("en");
+        req.setPathId("PATH_1");
+        req.setMusteringStation("MUSTER_STATION_1");
+        ArrayList<String> blocked = new ArrayList<>();
+        blocked.add("geofence1");
+        req.setBlockedGeofences(blocked);
+
+        MessageBodyResponse response = new MessageBodyResponse();
+
+
+        messageBodyService.getMessageBody(req,response);
+//        System.out.println(response.getContent());
+
+
+    }
+
+
+
 
 
     @Test

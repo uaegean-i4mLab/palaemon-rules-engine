@@ -7,9 +7,13 @@ import gr.aegean.palaemon.rulesengine.model.Path;
 import gr.aegean.palaemon.rulesengine.model.SetOfPaths;
 import gr.aegean.palaemon.rulesengine.service.MusterAssignmentService;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.rule.FactHandle;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class MusterAssignmentServiceImpl implements MusterAssignmentService {
@@ -19,16 +23,30 @@ public class MusterAssignmentServiceImpl implements MusterAssignmentService {
     @Override
     public PassengerAssignment getAssignment(Passenger passenger, List<String> blockedGeofences, SetOfPaths availablePaths) {
         PassengerAssignment assignment = new PassengerAssignment();
-        kieSession.insert(passenger);
-        kieSession.insert(blockedGeofences);
+        FactHandle passengerFacts = kieSession.insert(passenger);
+        FactHandle blockedGeofencesFacts = kieSession.insert(blockedGeofences);
         // add all available path to the knowledge base
-        //TODO maybe only add here the paths that start or pass from the current passenger geofence
-        availablePaths.getPaths().forEach(path -> kieSession.insert(path));
+        ArrayList<FactHandle> pathFacts = new ArrayList<>();
+
+        //get the paths that the passenger can follow
+        SetOfPaths passengerPaths = new SetOfPaths();
+        passengerPaths.setPaths(availablePaths.getPaths().stream().filter(path -> {
+            return path.getGeofences().contains(passenger.getGeofence());
+        }).collect(Collectors.toList()));
+
+        passengerPaths.getPaths().forEach(path -> {
+            FactHandle pathFact = kieSession.insert(path);
+            pathFacts.add(pathFact);
+        });
 
         kieSession.setGlobal("passengerAssignment", assignment);
 
         kieSession.fireAllRules();
 //        System.out.println(phaseTask.getMessageObject());
+
+        kieSession.delete(passengerFacts);
+        kieSession.delete(blockedGeofencesFacts);
+        pathFacts.forEach(factHandle -> kieSession.delete(factHandle));
 
         return assignment;
     }
