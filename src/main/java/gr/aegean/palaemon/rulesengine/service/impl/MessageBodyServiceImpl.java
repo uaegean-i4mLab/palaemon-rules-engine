@@ -17,13 +17,20 @@ public class MessageBodyServiceImpl implements MessageBodyService {
 
     public String getMessageBody(MessageBodyRequest req, MessageBodyResponse res){
 
-        FactHandle addedFacts = kieSession.insert(req);
-        kieSession.setGlobal("messageBodyRes",res);
-        kieSession.fireAllRules();
+        try{
+            FactHandle addedFacts = kieSession.insert(req);
+            kieSession.setGlobal("messageBodyRes",res);
+            kieSession.fireAllRules();
 //        System.out.println(res.getContent());
-        log.info("The message obj request is {}", req.toString());
-        log.info("The message obj body returned from the rules is  is {}", res.getContent());
-        kieSession.delete(addedFacts);
-        return  res.getContent();
+//            log.info("The message obj request is {}", req.toString());
+//            log.info("The message obj body returned from the rules is  is {}", res.getContent());
+            kieSession.delete(addedFacts);
+            return  res.getContent();
+        }catch (Exception e){
+            log.error(e.getMessage());
+            log.error("The message obj request is {}", req.toString());
+            return "ERROR making Message BODY";
+        }
+
     };
 }

@@ -21,9 +21,10 @@ public class MusterAssignmentServiceImpl implements MusterAssignmentService {
     private KieSession kieSession = new DroolsConfig().getKieSession();
 
     @Override
-    public PassengerAssignment getAssignment(Passenger passenger, List<String> blockedGeofences, SetOfPaths availablePaths) {
+    public PassengerAssignment getAssignment(Passenger passenger, List<String> blockedGeofences, SetOfPaths availablePaths, String geofence) {
         PassengerAssignment assignment = new PassengerAssignment();
         FactHandle passengerFacts = kieSession.insert(passenger);
+        FactHandle geofenceFacts = kieSession.insert(geofence);
         FactHandle blockedGeofencesFacts = kieSession.insert(blockedGeofences);
         // add all available path to the knowledge base
         ArrayList<FactHandle> pathFacts = new ArrayList<>();
@@ -46,6 +47,7 @@ public class MusterAssignmentServiceImpl implements MusterAssignmentService {
 
         kieSession.delete(passengerFacts);
         kieSession.delete(blockedGeofencesFacts);
+        kieSession.delete(geofenceFacts);
         pathFacts.forEach(factHandle -> kieSession.delete(factHandle));
 
         return assignment;

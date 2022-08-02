@@ -9,33 +9,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Getter
+@Setter
 public class PassengerAssignment {
 
    private String musterStation;
    private String pathId;
    private String action ;
 
-    public String getMusterStation() {
-        return musterStation;
-    }
+   private String geofence;
 
-    public void setMusterStation(String musterStation) {
-        this.musterStation = musterStation;
-    }
-
-    public String getPathId() {
-        return pathId;
-    }
-
-    public void setPathId(String pathId) {
-        this.pathId = pathId;
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
-    }
 }

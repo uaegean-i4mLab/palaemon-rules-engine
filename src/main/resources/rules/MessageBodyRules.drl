@@ -16,14 +16,14 @@ rule "MessageBody_r1_Stay_not_gr"
 		MessageBodyRequest(action.equals("WAIT"))
 
 	then
-		messageBodyRes.setContent("Please remain in your position and a Crew member will assist you to reach MusterStation 1");
+		messageBodyRes.setContent("Please remain in your location. A crew member is on the way to escort you to the Master Station and will arrive to you really shortly.");
 end
 
 rule "Assume_EMERGENCY_Positions"
 	when
 		MessageBodyRequest(messageCode.equals("4.1"))
 	then
-		messageBodyRes.setContent("ASSUME PREDEFINED EMERGENCY POSITIONS ASAP");
+		messageBodyRes.setContent("Assume your emergency post now!!");
 end
 
 rule "Alert_Passengers_en"
@@ -31,7 +31,7 @@ rule "Alert_Passengers_en"
 		MessageBodyRequest(messageCode.equals("5.1"))
 		MessageBodyRequest(!language.equals("gr"))
 	then
-		messageBodyRes.setContent("The Vessel is about to go into evacuation mode please be ready");
+		messageBodyRes.setContent("Fire Onboard. Prepare for immediate evacuation. This is not a drill!!");
 end
 
 rule "Alert_Passengers_gr"
@@ -55,7 +55,7 @@ rule "Inform_Passengers_en"
 		MessageBodyRequest(messageCode.equals("6.2"))
 		MessageBodyRequest(!language.equals("gr"))
 	then
-		messageBodyRes.setContent("Put your life jackets on");
+		messageBodyRes.setContent("Put on your life jacket, remain calm and wait for instructions. Life jackets are stored in your cabins under your bed and at the master stations.");
 end
 
 
@@ -139,17 +139,78 @@ end
 // ***************** REAL RULES ************************
 
 
-rule "elyros_9_9G1"
+rule "elyros_9_9BG1"
 	when
 		MessageBodyRequest(messageCode.equals("6.3"))
 		MessageBodyRequest(!language.equals("gr"))
 		MessageBodyRequest(action.equals("FOLLOW"))
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P1"))
+		MessageBodyRequest(geofence != null && geofence.equals("9BG1"))
 	then
 		messageBodyRes.setContent("Exit the VIP Lounge Area and find the staircase on your left. Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
 end
 
+rule "elyros_9_S9-8.1"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId.equals("PATH_P1"))
+		MessageBodyRequest(geofence != null && geofence.equals("S9-8.1"))
+	then
+		messageBodyRes.setContent("Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+end
+rule "elyros_9_S8-7.1"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId.equals("PATH_P1") || pathId.equals("PATH_P2") || pathId.equals("PATH_P3") || pathId.equals("PATH_P4") || pathId.equals("PATH_P5") || pathId.equals("PATH_P6"))
+		MessageBodyRequest(geofence != null && geofence.equals("S8-7.1"))
+	then
+		messageBodyRes.setContent("Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+end
+rule "elyros_9_S7-6.1"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId.equals("PATH_P1") || pathId.equals("PATH_P2") || pathId.equals("PATH_P3") || pathId.equals("PATH_P4") || pathId.equals("PATH_P5") || pathId.equals("PATH_P6"))
+		MessageBodyRequest(geofence != null && geofence.equals("S7-6.1"))
+	then
+		messageBodyRes.setContent("Use the door in front of you to enter the Master station area. ");
+end
+rule "elyros_9_7BG4"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId.equals("PATH_P1") || pathId.equals("PATH_P2") || pathId.equals("PATH_P3") || pathId.equals("PATH_P4") || pathId.equals("PATH_P5") || pathId.equals("PATH_P6"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG4"))
+	then
+		messageBodyRes.setContent("Move straight for 20 meters to enter the Master station area.");
+end
+rule "elyros_9_7BG5"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId.equals("PATH_P1"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG5"))
+	then
+		messageBodyRes.setContent("Move straight for 10 meters to enter the Master station area.");
+end
+
+
+// -------------->CABIN RULES <-------------
+
+//PATH_2
 rule "elyros_8_8G1"
 	when
 		MessageBodyRequest(messageCode.equals("6.3"))
@@ -157,9 +218,24 @@ rule "elyros_8_8G1"
 		MessageBodyRequest(action.equals("FOLLOW"))
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P2"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G1"))
 	then
 		messageBodyRes.setContent("Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
 end
+rule "elyros_8_S8-7.1"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId.equals("PATH_P2"))
+		MessageBodyRequest(geofence != null && geofence.equals("S8-7.1"))
+	then
+		messageBodyRes.setContent("Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+end
+
+
+//PATH_3
 
 rule "elyros_8_8G2"
 	when
@@ -168,10 +244,26 @@ rule "elyros_8_8G2"
 		MessageBodyRequest(action.equals("FOLLOW"))
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P3"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G2"))
 	then
 		messageBodyRes.setContent("Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
 end
 
+//PATH_4
+
+rule "elyros_8_8G3"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId.equals("PATH_P4"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G3"))
+	then
+		messageBodyRes.setContent("Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+end
+
+//PATH_5
 
 rule "elyros_8_8G4"
 	when
@@ -180,9 +272,12 @@ rule "elyros_8_8G4"
 		MessageBodyRequest(action.equals("FOLLOW"))
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P5"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G4"))
 	then
 		messageBodyRes.setContent("Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
 end
+
+//PATH_6
 
 rule "elyros_8_8G5"
 	when
@@ -191,9 +286,13 @@ rule "elyros_8_8G5"
 		MessageBodyRequest(action.equals("FOLLOW"))
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P6"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G5"))
 	then
 		messageBodyRes.setContent("Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
 end
+
+
+//PATH_7
 
 rule "elyros_8_8G6"
 	when
@@ -202,9 +301,86 @@ rule "elyros_8_8G6"
 		MessageBodyRequest(action.equals("FOLLOW"))
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P7"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G6"))
 	then
 		messageBodyRes.setContent("Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
 end
+
+rule "elyros_8_S8-7.2"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8"))
+		MessageBodyRequest(geofence != null && geofence.equals("S8-7.2"))
+	then
+		messageBodyRes.setContent("Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+end
+
+rule "elyros_8_7BG1"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8") || pathId.equals("PATH_P9") || pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG1"))
+	then
+	    messageBodyRes.setContent("Move straight for 150 meters to enter the Master station area. ");
+end
+
+rule "elyros_8_7BG2"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG2")|| pathId.equals("PATH_P9")|| pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
+	then
+		messageBodyRes.setContent("Walk 120 meters in front of you to enter the Master station area. ");
+end
+
+rule "elyros_8_7BG3"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8")|| pathId.equals("PATH_P9")|| pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG3"))
+	then
+		messageBodyRes.setContent("Walk 100 meters in front of you to enter the Master station area. ");
+end
+
+rule "elyros_8_7BG4"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8")|| pathId.equals("PATH_P9")|| pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG4"))
+	then
+		messageBodyRes.setContent("Walk 70 meters in front of you to enter the Master station area. ");
+end
+
+rule "elyros_8_7BG5"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8") || pathId.equals("PATH_P9")|| pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG5"))
+	then
+		messageBodyRes.setContent("Walk 50 meters in front of you to enter the Master station area. ");
+end
+
+
+
+//PATH_8
 
 rule "elyros_8_8G7"
 	when
@@ -213,10 +389,15 @@ rule "elyros_8_8G7"
 		MessageBodyRequest(action.equals("FOLLOW"))
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P8"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G7"))
 	then
-		messageBodyRes.setContent("Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
 end
 
+
+
+
+// PATH_9
 rule "elyros_8_8G8"
 	when
 		MessageBodyRequest(messageCode.equals("6.3"))
@@ -224,9 +405,24 @@ rule "elyros_8_8G8"
 		MessageBodyRequest(action.equals("FOLLOW"))
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P9"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G8"))
 	then
 		messageBodyRes.setContent("Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
 end
+
+rule "elyros_8_S8-7.3"
+	when
+		MessageBodyRequest(messageCode.equals("6.3"))
+		MessageBodyRequest(!language.equals("gr"))
+		MessageBodyRequest(action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation.equals("S8-7.3"))
+		MessageBodyRequest(pathId.equals("PATH_P9") || pathId.equals("PATH_P10") || pathId.equals("PATH_P11") )
+		MessageBodyRequest(geofence != null && geofence.equals("S8-7.3"))
+	then
+		messageBodyRes.setContent("Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+end
+
+//PATH_10
 
 rule "elyros_8_8G9"
 	when
@@ -235,9 +431,12 @@ rule "elyros_8_8G9"
 		MessageBodyRequest(action.equals("FOLLOW"))
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P10"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G9"))
 	then
 		messageBodyRes.setContent("Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
 end
+
+//PATH_11
 
 rule "elyros_8_8G10"
 	when
@@ -246,9 +445,13 @@ rule "elyros_8_8G10"
 		MessageBodyRequest(action.equals("FOLLOW"))
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P11"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G10"))
 	then
 		messageBodyRes.setContent("Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
 end
+
+
+// end of -------->CABIN RULES<----------------
 
 
 rule "elyros_7_7DG1"
@@ -258,8 +461,9 @@ rule "elyros_7_7DG1"
 		MessageBodyRequest(action.equals("FOLLOW"))
 		MessageBodyRequest(musteringStation.equals("7DG4"))
 		MessageBodyRequest(pathId.equals("PATH_P12"))
+		MessageBodyRequest(geofence != null && geofence.equals("7DG1"))
 	then
-		messageBodyRes.setContent("You are in the Master Station area. Follow the crew and the rest of the passengers.");
+		messageBodyRes.setContent("Move straight for 150 meters to enter the Master station area. ");
 end
 
 rule "elyros_7_7DG2"
@@ -270,7 +474,7 @@ rule "elyros_7_7DG2"
 		MessageBodyRequest(musteringStation.equals("7DG4"))
 		MessageBodyRequest(pathId.equals("PATH_P13"))
 	then
-		messageBodyRes.setContent("You are in the Master Station area. Follow the crew and the rest of the passengers.");
+		messageBodyRes.setContent("Move straight for 100 meters to enter the Master station area. ");
 end
 
 rule "elyros_7_7DG3"
@@ -281,7 +485,7 @@ rule "elyros_7_7DG3"
 		MessageBodyRequest(musteringStation.equals("7DG4"))
 		MessageBodyRequest(pathId.equals("PATH_P14"))
 	then
-		messageBodyRes.setContent("You are in the Master Station area. Follow the crew and the rest of the passengers.");
+		messageBodyRes.setContent("Move straight for 50 meters to enter the Master station area. ");
 end
 
 rule "elyros_7_7DG4"
@@ -303,7 +507,7 @@ rule "elyros_7_7DG3_alt"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P16"))
 	then
-		messageBodyRes.setContent("Move straight for x meters to enter the Master station area. ");
+		messageBodyRes.setContent("Move straight for 200 meters to enter the Master station area. ");
 end
 
 rule "elyros_7_7CG1_alt"
@@ -314,7 +518,7 @@ rule "elyros_7_7CG1_alt"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P17"))
 	then
-		messageBodyRes.setContent("Move straight for x meters to enter the Master station area. ");
+		messageBodyRes.setContent("Move straight for 150 meters to enter the Master station area. ");
 end
 
 rule "elyros_7_7CG2_alt"
@@ -325,7 +529,7 @@ rule "elyros_7_7CG2_alt"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P18"))
 	then
-		messageBodyRes.setContent("Move straight for x meters to enter the Master station area. ");
+		messageBodyRes.setContent("Move straight for 100 meters to enter the Master station area. ");
 end
 
 rule "elyros_7_7BG1"
@@ -336,7 +540,7 @@ rule "elyros_7_7BG1"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P19"))
 	then
-		messageBodyRes.setContent("You are in the Master Station area. Follow the crew and the rest of the passengers.");
+		messageBodyRes.setContent("Move straight for 70 meters to enter the Master station area. ");
 end
 
 rule "elyros_7_7BG2"
@@ -347,7 +551,7 @@ rule "elyros_7_7BG2"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P20"))
 	then
-		messageBodyRes.setContent("You are in the Master Station area. Follow the crew and the rest of the passengers.");
+		messageBodyRes.setContent("Move straight for 50 meters to enter the Master station area. ");
 end
 
 rule "elyros_7_7BG3"
@@ -358,7 +562,7 @@ rule "elyros_7_7BG3"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P21"))
 	then
-		messageBodyRes.setContent("You are in the Master Station area. Follow the crew and the rest of the passengers.");
+	messageBodyRes.setContent("Move straight for 40 meters to enter the Master station area. ");
 end
 
 rule "elyros_7_7BG5"
@@ -369,7 +573,7 @@ rule "elyros_7_7BG5"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P22"))
 	then
-		messageBodyRes.setContent("You are in the Master Station area. Follow the crew and the rest of the passengers.");
+		messageBodyRes.setContent("Move straight for 20 meters to enter the Master station area. ");
 end
 
 rule "elyros_7_7BG6"
@@ -378,7 +582,7 @@ rule "elyros_7_7BG6"
 		MessageBodyRequest(!language.equals("gr"))
 		MessageBodyRequest(action.equals("FOLLOW"))
 		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P23"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG6"))
 	then
 		messageBodyRes.setContent("You are in the Master Station area. Follow the crew and the rest of the passengers.");
 end
@@ -392,7 +596,7 @@ rule "elyros_7_7DG1, 7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P24"))
 	then
-		messageBodyRes.setContent("Move straight for x meters to enter the Master station area. ");
+		messageBodyRes.setContent("Move straight for 200 meters to enter the Master station area. ");
 end
 
 rule "elyros_7_7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6"
@@ -403,7 +607,7 @@ rule "elyros_7_7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P25"))
 	then
-		messageBodyRes.setContent("Move straight for x meters to enter the Master station area. ");
+		messageBodyRes.setContent("Move straight for 150 meters to enter the Master station area. ");
 end
 
 

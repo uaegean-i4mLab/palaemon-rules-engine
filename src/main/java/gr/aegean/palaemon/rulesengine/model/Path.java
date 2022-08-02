@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Path {
+public class Path implements Comparable<Path> {
 
     List<String> geofences;
     String pathId;
@@ -26,4 +26,8 @@ public class Path {
     }
 
 
+    @Override
+    public int compareTo(Path o) {
+        return Integer.compare(o.getGeofences().size(), this.getGeofences().size());
+    }
 }

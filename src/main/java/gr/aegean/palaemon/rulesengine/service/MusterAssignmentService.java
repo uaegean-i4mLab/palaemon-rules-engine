@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface MusterAssignmentService {
 
-    public PassengerAssignment getAssignment(Passenger passenger, List<String> blockedGeofences, SetOfPaths availablePaths);
+    public PassengerAssignment getAssignment(Passenger passenger, List<String> blockedGeofences, SetOfPaths availablePaths, String geofence);
 }

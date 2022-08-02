@@ -187,6 +187,80 @@ end
 
 // ************************************* REAL RULES **********************************************************
 
+
+
+// rule for Deck7,8,9, Geofences 9BG1,S9-8.1,S8-7.1,S7-6.1,7BG4,7BG5,7BG6
+rule "assignment_d789_BG1,S9-8.1,S8-7.1,S7-6.1,7BG4,7BG5,7BG6"
+	salience 20 //rule order execution
+	activation-group "x" // group of rules, if one fires successfully no more will be fired
+	when
+	    //check the deck and geofence
+	    $passenger: Passenger( (deck.equals("7")  || deck.equals("8") || deck.equals("9") )&& (
+	    geofence.contains("9BG1")
+	    ||
+	    geofence.contains("S9-8.1")
+	    ||
+	    geofence.contains("S8-7.1")
+	    ||
+	    geofence.contains("S7-6.1")
+	     ||
+         geofence.contains("7BG4")
+	    ) )
+	    // path geofences are not blocked
+	    $availablePath: Path()
+	    $blocked: List()
+	    $geofence: String()
+	    eval( !$availablePath.containsGeofence($blocked) || $availablePath.onlyStartOfPathBlocked($blocked))
+	    //ensure that if an assignment has already been made
+	    //by the execution of a previous rule, we do not re-assign it
+	    eval(passengerAssignment.getPathId() == null)
+	    eval($availablePath.isPreferred())
+	    // passenger health conditions are ok
+	then
+	    System.out.println("Rule d789_BG1,S9-8.1,S8-7.1,S7-6.1,7BG4,7BG5,7BG6 used");
+	    System.out.println("the assigned path id is:" + $availablePath.getPathId());
+		passengerAssignment.setAction("FOLLOW");
+		passengerAssignment.setMusterStation("7BG6");
+		passengerAssignment.setPathId($availablePath.getPathId());
+		passengerAssignment.setGeofence($geofence);
+end
+
+
+
+
+
+// rule for Deck7  Geofences ,7BG3,7BG2,7BG5,7BG6
+rule "assignment_d789_7BG3,7BG2,7BG5,7BG6"
+	salience 20 //rule order execution
+	activation-group "x" // group of rules, if one fires successfully no more will be fired
+	when
+	    //check the deck and geofence
+	    $passenger: Passenger(deck.equals("7") && (
+	    geofence.contains("7BG3")
+	    ) )
+	    // path geofences are not blocked
+	    $availablePath: Path()
+	    $blocked: List()
+	    $geofence: String()
+	    eval( !$availablePath.containsGeofence($blocked) || $availablePath.onlyStartOfPathBlocked($blocked))
+	    //ensure that if an assignment has already been made
+	    //by the execution of a previous rule, we do not re-assign it
+	    eval(passengerAssignment.getPathId() == null)
+	    eval($availablePath.isPreferred())
+	    // passenger health conditions are ok
+	then
+	    System.out.println("Rule assignment_d789_7BG3,7BG2,7BG5,7BG6 used");
+	    System.out.println("the assigned path id is:" + $availablePath.getPathId());
+		passengerAssignment.setAction("FOLLOW");
+		passengerAssignment.setMusterStation("7BG6");
+		passengerAssignment.setPathId($availablePath.getPathId());
+		passengerAssignment.setGeofence($geofence);
+end
+
+
+
+
+
 // rule for Deck7, Geofences 7DG1,7DG2,7DG3,7DG4
 rule "assignment_d7_7DG1,7DG2,7DG3,7DG4_existsFreePath"
 	salience 20 //rule order execution
@@ -205,6 +279,7 @@ rule "assignment_d7_7DG1,7DG2,7DG3,7DG4_existsFreePath"
 	    // path geofences are not blocked
 	    $availablePath: Path()
 	    $blocked: List()
+	    $geofence: String()
 	    eval( !$availablePath.containsGeofence($blocked) || $availablePath.onlyStartOfPathBlocked($blocked))
 	    //ensure that if an assignment has already been made
 	    //by the execution of a previous rule, we do not re-assign it
@@ -217,6 +292,7 @@ rule "assignment_d7_7DG1,7DG2,7DG3,7DG4_existsFreePath"
 		passengerAssignment.setAction("FOLLOW");
 		passengerAssignment.setMusterStation("7DG4");
 		passengerAssignment.setPathId($availablePath.getPathId());
+		passengerAssignment.setGeofence($geofence);
 end
 
 rule "assignment_d7_7DG1,7DG2,7DG3,7DG4_ALTERNATIVE"
@@ -236,6 +312,7 @@ rule "assignment_d7_7DG1,7DG2,7DG3,7DG4_ALTERNATIVE"
 	    // path geofences are not blocked
 	    $availablePath: Path()
 	    $blocked: List()
+	    $geofence: String()
 	    eval( !$availablePath.containsGeofence($blocked) || $availablePath.onlyStartOfPathBlocked($blocked))
 	    //ensure that if an assignment has already been made
 	    //by the execution of a previous rule, we do not re-assign it
@@ -248,6 +325,7 @@ rule "assignment_d7_7DG1,7DG2,7DG3,7DG4_ALTERNATIVE"
 		passengerAssignment.setAction("FOLLOW");
 		passengerAssignment.setMusterStation("7BG6");
 		passengerAssignment.setPathId($availablePath.getPathId());
+		passengerAssignment.setGeofence($geofence);
 end
 
 
@@ -263,7 +341,9 @@ rule "assignment_d7_7DG3,7CG1,7CG2,7BG1,7BG2,7BG6_existsFreePath"
 	activation-group "x" // group of rules, if one fires successfully no more will be fired
 	when
 	    //check the deck and geofence
-	    $passenger: Passenger(deck.equals("7") && (
+	    $passenger: Passenger(
+	    deck.equals("7")
+	    && (
 	    geofence.contains("7DG3")
 	    ||
 	    geofence.contains("7CG1")
@@ -273,12 +353,17 @@ rule "assignment_d7_7DG3,7CG1,7CG2,7BG1,7BG2,7BG6_existsFreePath"
 	    geofence.contains("7BG1")
 	    ||
 	    geofence.contains("7BG2")
-	    ||
-	    geofence.contains("7BG6")
-	    ) )
+	    )
+	    &&(
+	    !geofence.contains("8G")
+	    )
+	    &&(
+	    	    !geofence.contains("S8-7.2")
+	    ))
 	    // path geofences are not blocked
 	    $availablePath: Path()
 	    $blocked: List()
+	    $geofence: String()
 	    eval( !$availablePath.containsGeofence($blocked) || $availablePath.onlyStartOfPathBlocked($blocked))
 	    //ensure that if an assignment has already been made
 	    //by the execution of a previous rule, we do not re-assign it
@@ -290,6 +375,7 @@ rule "assignment_d7_7DG3,7CG1,7CG2,7BG1,7BG2,7BG6_existsFreePath"
 		passengerAssignment.setAction("FOLLOW");
 		passengerAssignment.setMusterStation("7BG6");
 		passengerAssignment.setPathId($availablePath.getPathId());
+		passengerAssignment.setGeofence($geofence);
 end
 
 rule "assignment_d7_7BG1,7BG2,7BG5,7BG6_existsFreePath"
@@ -309,6 +395,7 @@ rule "assignment_d7_7BG1,7BG2,7BG5,7BG6_existsFreePath"
 	    // path geofences are not blocked
 	    $availablePath: Path()
 	    $blocked: List()
+	    $geofence: String()
 	    eval( !$availablePath.containsGeofence($blocked) || $availablePath.onlyStartOfPathBlocked($blocked))
 	    //ensure that if an assignment has already been made
 	    //by the execution of a previous rule, we do not re-assign it
@@ -320,4 +407,5 @@ rule "assignment_d7_7BG1,7BG2,7BG5,7BG6_existsFreePath"
 		passengerAssignment.setAction("FOLLOW");
 		passengerAssignment.setMusterStation("7BG6");
 		passengerAssignment.setPathId($availablePath.getPathId());
+		passengerAssignment.setGeofence($geofence);
 end

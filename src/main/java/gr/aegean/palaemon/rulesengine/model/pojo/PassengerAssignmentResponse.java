@@ -12,5 +12,6 @@ public class PassengerAssignmentResponse {
     private String pathId;
     private String action ;
     private String hashedMacAddress;
+    private String geofence;
 
 }

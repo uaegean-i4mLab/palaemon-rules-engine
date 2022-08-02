@@ -8,6 +8,7 @@ import gr.aegean.palaemon.rulesengine.service.MessageBodyService;
 import gr.aegean.palaemon.rulesengine.service.MusterAssignmentService;
 import gr.aegean.palaemon.rulesengine.service.PathReaderService;
 import gr.aegean.palaemon.rulesengine.service.TaskRuleService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
+@Slf4j
 public class RuleControllers {
 
 
@@ -56,22 +58,25 @@ public class RuleControllers {
             String passengerLanguage = messageBodyRequests.getPassengerLanguages().get(passengerLanguageKey);
             String passengerAction = messageBodyRequests.getActions().get(passengerLanguageKey);
             String musterStation = messageBodyRequests.getMusterStation().get(passengerLanguageKey);
+            String geofence = messageBodyRequests.getCurrentGeofences().get(passengerLanguageKey);
 
 //            if (assignedPathId != null && messageCode != null && passengerLanguage != null && passengerAction != null) {
-                MessageBodyRequest requests = new MessageBodyRequest();
-                requests.setBlockedGeofences(messageBodyRequests.getBlockedGeofences());
-                requests.setMessageCode(messageCode);
-                requests.setPathId(assignedPathId);
-                requests.setAction(passengerAction);
-                requests.setLanguage(passengerLanguage);
-                requests.setMusteringStation(musterStation);
-                MessageBodyResponse mbResponse = new MessageBodyResponse();
-                messageBodyService.getMessageBody(requests, mbResponse);
-                Map<String, String> resultEntry = new HashMap<>();
-                resultEntry.put("hashedMacAddress", passengerLanguageKey);
-                resultEntry.put("content", mbResponse.getContent());
-                resultEntry.put("visualAid", mbResponse.getVisualAid());
-                result.add(resultEntry);
+            MessageBodyRequest requests = new MessageBodyRequest();
+            requests.setBlockedGeofences(messageBodyRequests.getBlockedGeofences());
+            requests.setMessageCode(messageCode);
+            requests.setPathId(assignedPathId);
+            requests.setAction(passengerAction);
+            requests.setLanguage(passengerLanguage);
+            requests.setMusteringStation(musterStation);
+            requests.setGeofence(geofence);
+            MessageBodyResponse mbResponse = new MessageBodyResponse();
+//                log.info("making MessageBODY REQUEST with {}", messageBodyRequests);
+            messageBodyService.getMessageBody(requests, mbResponse);
+            Map<String, String> resultEntry = new HashMap<>();
+            resultEntry.put("hashedMacAddress", passengerLanguageKey);
+            resultEntry.put("content", mbResponse.getContent());
+            resultEntry.put("visualAid", mbResponse.getVisualAid());
+            result.add(resultEntry);
 //            }
         });
         return result;
@@ -84,13 +89,17 @@ public class RuleControllers {
         SetOfPaths availablePaths = pathReaderService.getAllAvailablePaths();
         List<PassengerAssignmentResponse> assignments = new ArrayList<>();
         request.getPassengers().forEach(passenger -> {
-            PassengerAssignment passengerAssignment = musterAssignmentService.getAssignment(passenger, request.getBlocked(), availablePaths);
-            PassengerAssignmentResponse singleResponse = new PassengerAssignmentResponse();
-            singleResponse.setMusterStation(passengerAssignment.getMusterStation());
-            singleResponse.setHashedMacAddress(passenger.getHashedMacAddress());
-            singleResponse.setAction(passengerAssignment.getAction());
-            singleResponse.setPathId(passengerAssignment.getPathId());
-            assignments.add(singleResponse);
+            if (passenger.getDeck() != null) {
+                PassengerAssignment passengerAssignment = musterAssignmentService.getAssignment(passenger, request.getBlocked(), availablePaths, passenger.getGeofence());
+                PassengerAssignmentResponse singleResponse = new PassengerAssignmentResponse();
+                singleResponse.setMusterStation(passengerAssignment.getMusterStation());
+                singleResponse.setHashedMacAddress(passenger.getHashedMacAddress());
+                singleResponse.setAction(passengerAssignment.getAction());
+                singleResponse.setPathId(passengerAssignment.getPathId());
+                singleResponse.setGeofence(passengerAssignment.getGeofence());
+                assignments.add(singleResponse);
+            }
+
         });
 
         return assignments;
