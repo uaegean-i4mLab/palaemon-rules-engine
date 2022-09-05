@@ -132,7 +132,7 @@ public class TestRuleServices {
 
         availablePaths.setPaths(listOfPaths);
 
-        musterAssignmentService.getAssignment(passenger,  blockedGeofences, availablePaths );
+//        musterAssignmentService.getAssignment(passenger,  blockedGeofences, availablePaths );
 
     }
 
@@ -178,8 +178,8 @@ public class TestRuleServices {
 
         availablePaths.setPaths(listOfPaths);
 
-       PassengerAssignment assignment = musterAssignmentService.getAssignment(passenger,  blockedGeofences, availablePaths );
-       System.out.println(assignment.getPathId());
+//       PassengerAssignment assignment = musterAssignmentService.getAssignment(passenger,  blockedGeofences, availablePaths );
+//       System.out.println(assignment.getPathId());
 
     }
 
@@ -227,8 +227,8 @@ public class TestRuleServices {
 
         availablePaths.setPaths(listOfPaths);
 
-        PassengerAssignment assignment = musterAssignmentService.getAssignment(passenger,  blockedGeofences, availablePaths );
-        System.out.println(assignment.getAction());
+//        PassengerAssignment assignment = musterAssignmentService.getAssignment(passenger,  blockedGeofences, availablePaths );
+//        System.out.println(assignment.getAction());
 
     }
 
