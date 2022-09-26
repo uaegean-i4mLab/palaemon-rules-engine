@@ -90,7 +90,8 @@ public class RuleControllers {
         List<PassengerAssignmentResponse> assignments = new ArrayList<>();
         request.getPassengers().forEach(passenger -> {
             if (passenger.getDeck() != null) {
-                PassengerAssignment passengerAssignment = musterAssignmentService.getAssignment(passenger, request.getBlocked(), availablePaths, passenger.getGeofence());
+                PassengerAssignment passengerAssignment =
+                        musterAssignmentService.getAssignment(passenger, request.getBlocked(), availablePaths, passenger.getGeofence());
                 PassengerAssignmentResponse singleResponse = new PassengerAssignmentResponse();
                 singleResponse.setMusterStation(passengerAssignment.getMusterStation());
                 singleResponse.setHashedMacAddress(passenger.getHashedMacAddress());

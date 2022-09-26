@@ -3,6 +3,7 @@ package gr.aegean.palaemon.rulesengine.service.impl;
 import gr.aegean.palaemon.rulesengine.model.Path;
 import gr.aegean.palaemon.rulesengine.model.SetOfPaths;
 import gr.aegean.palaemon.rulesengine.service.PathReaderService;
+import gr.aegean.palaemon.rulesengine.utils.PathSorter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -64,7 +65,7 @@ public class PathReaderServiceImpl implements PathReaderService {
             log.error(ex.getLocalizedMessage());
         }
 
-        Collections.sort(availablePaths.getPaths());
+        Collections.sort(availablePaths.getPaths(), new PathSorter());
         return availablePaths;
     }
 }

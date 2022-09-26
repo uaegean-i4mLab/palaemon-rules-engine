@@ -148,7 +148,10 @@ rule "elyros_9_9BG1"
 		MessageBodyRequest(pathId.equals("PATH_P1"))
 		MessageBodyRequest(geofence != null && geofence.equals("9BG1"))
 	then
-		messageBodyRes.setContent("Exit the VIP Lounge Area and find the staircase on your left. Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent( "Access to Muster Station Muster Station B is via the following path: \n" +
+		"Exit the VIP Lounge Area and find the staircase on your left. Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+			System.out.println("Rule elyros_9_9BG1 used");
 end
 
 rule "elyros_9_S9-8.1"
@@ -160,7 +163,10 @@ rule "elyros_9_S9-8.1"
 		MessageBodyRequest(pathId.equals("PATH_P1"))
 		MessageBodyRequest(geofence != null && geofence.equals("S9-8.1"))
 	then
-		messageBodyRes.setContent("Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent( "Access to Muster Station Muster Station B is via the following path: \n" +
+		"Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_9_S9-8.1 used");
 end
 rule "elyros_9_S8-7.1"
 	when
@@ -171,7 +177,10 @@ rule "elyros_9_S8-7.1"
 		MessageBodyRequest(pathId.equals("PATH_P1") || pathId.equals("PATH_P2") || pathId.equals("PATH_P3") || pathId.equals("PATH_P4") || pathId.equals("PATH_P5") || pathId.equals("PATH_P6"))
 		MessageBodyRequest(geofence != null && geofence.equals("S8-7.1"))
 	then
-		messageBodyRes.setContent("Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_9_S8-7.1 used");
 end
 rule "elyros_9_S7-6.1"
 	when
@@ -182,7 +191,10 @@ rule "elyros_9_S7-6.1"
 		MessageBodyRequest(pathId.equals("PATH_P1") || pathId.equals("PATH_P2") || pathId.equals("PATH_P3") || pathId.equals("PATH_P4") || pathId.equals("PATH_P5") || pathId.equals("PATH_P6"))
 		MessageBodyRequest(geofence != null && geofence.equals("S7-6.1"))
 	then
-		messageBodyRes.setContent("Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_9_S7-6.1 used");
 end
 rule "elyros_9_7BG4"
 	when
@@ -193,7 +205,10 @@ rule "elyros_9_7BG4"
 		MessageBodyRequest(pathId.equals("PATH_P1") || pathId.equals("PATH_P2") || pathId.equals("PATH_P3") || pathId.equals("PATH_P4") || pathId.equals("PATH_P5") || pathId.equals("PATH_P6"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG4"))
 	then
-		messageBodyRes.setContent("Move straight for 20 meters to enter the Master station area.");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Move straight for 20 meters to enter the Master station area.");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_9_7BG4 used");
 end
 rule "elyros_9_7BG5"
 	when
@@ -204,7 +219,10 @@ rule "elyros_9_7BG5"
 		MessageBodyRequest(pathId.equals("PATH_P1"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG5"))
 	then
-		messageBodyRes.setContent("Move straight for 10 meters to enter the Master station area.");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Move straight for 10 meters to enter the Master station area.");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_9_7BG5 used");
 end
 
 
@@ -220,7 +238,9 @@ rule "elyros_8_8G1"
 		MessageBodyRequest(pathId.equals("PATH_P2"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G1"))
 	then
-		messageBodyRes.setContent("Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 rule "elyros_8_S8-7.1"
 	when
@@ -231,7 +251,9 @@ rule "elyros_8_S8-7.1"
 		MessageBodyRequest(pathId.equals("PATH_P2"))
 		MessageBodyRequest(geofence != null && geofence.equals("S8-7.1"))
 	then
-		messageBodyRes.setContent("Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 
@@ -246,7 +268,9 @@ rule "elyros_8_8G2"
 		MessageBodyRequest(pathId.equals("PATH_P3"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G2"))
 	then
-		messageBodyRes.setContent("Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 //PATH_4
@@ -260,7 +284,9 @@ rule "elyros_8_8G3"
 		MessageBodyRequest(pathId.equals("PATH_P4"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G3"))
 	then
-		messageBodyRes.setContent("Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 //PATH_5
@@ -274,7 +300,9 @@ rule "elyros_8_8G4"
 		MessageBodyRequest(pathId.equals("PATH_P5"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G4"))
 	then
-		messageBodyRes.setContent("Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 //PATH_6
@@ -288,7 +316,9 @@ rule "elyros_8_8G5"
 		MessageBodyRequest(pathId.equals("PATH_P6"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G5"))
 	then
-		messageBodyRes.setContent("Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 
@@ -303,7 +333,9 @@ rule "elyros_8_8G6"
 		MessageBodyRequest(pathId.equals("PATH_P7"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G6"))
 	then
-		messageBodyRes.setContent("Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_S8-7.2"
@@ -315,7 +347,9 @@ rule "elyros_8_S8-7.2"
 		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8"))
 		MessageBodyRequest(geofence != null && geofence.equals("S8-7.2"))
 	then
-		messageBodyRes.setContent("Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_7BG1"
@@ -327,7 +361,9 @@ rule "elyros_8_7BG1"
 		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8") || pathId.equals("PATH_P9") || pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG1"))
 	then
-	    messageBodyRes.setContent("Move straight for 150 meters to enter the Master station area. ");
+	    messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+	    "Move straight for 150 meters to enter the Master station area. ");
+	    messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_7BG2"
@@ -339,7 +375,9 @@ rule "elyros_8_7BG2"
 		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG2")|| pathId.equals("PATH_P9")|| pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
 	then
-		messageBodyRes.setContent("Walk 120 meters in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Walk 120 meters in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_7BG3"
@@ -351,7 +389,9 @@ rule "elyros_8_7BG3"
 		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8")|| pathId.equals("PATH_P9")|| pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG3"))
 	then
-		messageBodyRes.setContent("Walk 100 meters in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Walk 100 meters in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_7BG4"
@@ -363,7 +403,9 @@ rule "elyros_8_7BG4"
 		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8")|| pathId.equals("PATH_P9")|| pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG4"))
 	then
-		messageBodyRes.setContent("Walk 70 meters in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Walk 70 meters in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_7BG5"
@@ -375,7 +417,9 @@ rule "elyros_8_7BG5"
 		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8") || pathId.equals("PATH_P9")|| pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG5"))
 	then
-		messageBodyRes.setContent("Walk 50 meters in front of you to enter the Master station area. ");
+		messageBodyRes.setContent( "Access to Muster Station Muster Station B is via the following path: \n" +
+		"Walk 50 meters in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 
@@ -391,7 +435,9 @@ rule "elyros_8_8G7"
 		MessageBodyRequest(pathId.equals("PATH_P8"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G7"))
 	then
-		messageBodyRes.setContent("Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 
@@ -407,7 +453,9 @@ rule "elyros_8_8G8"
 		MessageBodyRequest(pathId.equals("PATH_P9"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G8"))
 	then
-		messageBodyRes.setContent("Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_S8-7.3"
@@ -419,7 +467,9 @@ rule "elyros_8_S8-7.3"
 		MessageBodyRequest(pathId.equals("PATH_P9") || pathId.equals("PATH_P10") || pathId.equals("PATH_P11") )
 		MessageBodyRequest(geofence != null && geofence.equals("S8-7.3"))
 	then
-		messageBodyRes.setContent("Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 //PATH_10
@@ -433,7 +483,9 @@ rule "elyros_8_8G9"
 		MessageBodyRequest(pathId.equals("PATH_P10"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G9"))
 	then
-		messageBodyRes.setContent("Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 //PATH_11
@@ -447,7 +499,9 @@ rule "elyros_8_8G10"
 		MessageBodyRequest(pathId.equals("PATH_P11"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G10"))
 	then
-		messageBodyRes.setContent("Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
 end
 
 
@@ -463,7 +517,10 @@ rule "elyros_7_7DG1"
 		MessageBodyRequest(pathId.equals("PATH_P12"))
 		MessageBodyRequest(geofence != null && geofence.equals("7DG1"))
 	then
-		messageBodyRes.setContent("Move straight for 150 meters to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Move straight for 150 meters to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule aelyros_7_7DG1 used");
 end
 
 rule "elyros_7_7DG2"
@@ -474,7 +531,10 @@ rule "elyros_7_7DG2"
 		MessageBodyRequest(musteringStation.equals("7DG4"))
 		MessageBodyRequest(pathId.equals("PATH_P13"))
 	then
-		messageBodyRes.setContent("Move straight for 100 meters to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Move straight for 100 meters to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG2 used");
 end
 
 rule "elyros_7_7DG3"
@@ -485,7 +545,10 @@ rule "elyros_7_7DG3"
 		MessageBodyRequest(musteringStation.equals("7DG4"))
 		MessageBodyRequest(pathId.equals("PATH_P14"))
 	then
-		messageBodyRes.setContent("Move straight for 50 meters to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Move straight for 50 meters to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG3 used");
 end
 
 rule "elyros_7_7DG4"
@@ -496,7 +559,10 @@ rule "elyros_7_7DG4"
 		MessageBodyRequest(musteringStation.equals("7DG4"))
 		MessageBodyRequest(pathId.equals("PATH_P15"))
 	then
-		messageBodyRes.setContent("You are in the Master Station area. Follow the crew and the rest of the passengers.");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"You are in the Master Station area. Follow the crew and the rest of the passengers.");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG4 used");
 end
 
 rule "elyros_7_7DG3_alt"
@@ -507,7 +573,10 @@ rule "elyros_7_7DG3_alt"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P16"))
 	then
-		messageBodyRes.setContent("Move straight for 200 meters to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Move straight for 200 meters to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG3_alt used");
 end
 
 rule "elyros_7_7CG1_alt"
@@ -518,7 +587,10 @@ rule "elyros_7_7CG1_alt"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P17"))
 	then
-		messageBodyRes.setContent("Move straight for 150 meters to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Move straight for 150 meters to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG1_alt used");
 end
 
 rule "elyros_7_7CG2_alt"
@@ -529,7 +601,10 @@ rule "elyros_7_7CG2_alt"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P18"))
 	then
-		messageBodyRes.setContent("Move straight for 100 meters to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Move straight for 100 meters to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG2_alt used");
 end
 
 rule "elyros_7_7BG1"
@@ -540,7 +615,10 @@ rule "elyros_7_7BG1"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P19"))
 	then
-		messageBodyRes.setContent("Move straight for 70 meters to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Move straight for 70 meters to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7BG1 used");
 end
 
 rule "elyros_7_7BG2"
@@ -551,7 +629,10 @@ rule "elyros_7_7BG2"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P20"))
 	then
-		messageBodyRes.setContent("Move straight for 50 meters to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Move straight for 50 meters to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7BG2 used");
 end
 
 rule "elyros_7_7BG3"
@@ -562,7 +643,10 @@ rule "elyros_7_7BG3"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P21"))
 	then
-	messageBodyRes.setContent("Move straight for 40 meters to enter the Master station area. ");
+	messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+	"Move straight for 40 meters to enter the Master station area. ");
+	messageBodyRes.setVisualAid("image1.png");
+	System.out.println("Rule elyros_7_7BG3 used");
 end
 
 rule "elyros_7_7BG5"
@@ -573,7 +657,10 @@ rule "elyros_7_7BG5"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P22"))
 	then
-		messageBodyRes.setContent("Move straight for 20 meters to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Move straight for 20 meters to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7BG5 used");
 end
 
 rule "elyros_7_7BG6"
@@ -584,7 +671,10 @@ rule "elyros_7_7BG6"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG6"))
 	then
-		messageBodyRes.setContent("You are in the Master Station area. Follow the crew and the rest of the passengers.");
+		messageBodyRes.setContent(
+		"You are in the Master Station area. Follow the crew and the rest of the passengers.");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7BG6 used");
 end
 
 
@@ -596,7 +686,10 @@ rule "elyros_7_7DG1, 7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P24"))
 	then
-		messageBodyRes.setContent("Move straight for 200 meters to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Move straight for 200 meters to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG1, 7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6 used");
 end
 
 rule "elyros_7_7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6"
@@ -607,7 +700,10 @@ rule "elyros_7_7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6"
 		MessageBodyRequest(musteringStation.equals("7BG6"))
 		MessageBodyRequest(pathId.equals("PATH_P25"))
 	then
-		messageBodyRes.setContent("Move straight for 150 meters to enter the Master station area. ");
+		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
+		"Move straight for 150 meters to enter the Master station area. ");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6 used");
 end
 
 
