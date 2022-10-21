@@ -12,8 +12,8 @@ global MessageBodyResponse messageBodyRes;
 
 rule "MessageBody_r1_Stay_not_gr"
 	when
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("WAIT"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("WAIT"))
 
 	then
 		messageBodyRes.setContent("Please remain in your location. A crew member is on the way to escort you to the Master Station and will arrive to you really shortly.");
@@ -21,62 +21,30 @@ end
 
 rule "Assume_EMERGENCY_Positions"
 	when
-		MessageBodyRequest(messageCode.equals("4.1"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("4.1"))
 	then
 		messageBodyRes.setContent("Assume your emergency post now!!");
-end
-
-rule "Alert_Passengers_en"
-	when
-		MessageBodyRequest(messageCode.equals("5.1"))
-		MessageBodyRequest(!language.equals("gr"))
-	then
-		messageBodyRes.setContent("Fire Onboard. Prepare for immediate evacuation. This is not a drill!!");
-end
-
-rule "Alert_Passengers_gr"
-	when
-		MessageBodyRequest(messageCode.equals("5.1"))
-		MessageBodyRequest(language.equals("gr"))
-	then
-		messageBodyRes.setContent("ΠΡΟΣΟΧΗ το πλοιπο πρόκειται να εκκενοθεί. Δεν πρόκειται για άσκηση");
-end
-
-rule "Inform_Passengers_gr"
-	when
-		MessageBodyRequest(messageCode.equals("6.2"))
-		MessageBodyRequest(language.equals("gr"))
-	then
-		messageBodyRes.setContent("Φορέστε τα σωσίβια");
-end
-
-rule "Inform_Passengers_en"
-	when
-		MessageBodyRequest(messageCode.equals("6.2"))
-		MessageBodyRequest(!language.equals("gr"))
-	then
-		messageBodyRes.setContent("Put on your life jacket, remain calm and wait for instructions. Life jackets are stored in your cabins under your bed and at the master stations.");
 end
 
 
 rule "MessageBody_r1_Follow_en"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("MUSTERSTATION_1"))
-		MessageBodyRequest(pathId.equals("PATH_1"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("MUSTERSTATION_1"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_1"))
 	then
 		messageBodyRes.setContent("Please follow the predefined path to Muster Station 1");
 end
 
 rule "MessageBody_r2_Follow_en"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("Deck 7, MusterStation 1"))
-		MessageBodyRequest(pathId.equals("PATH_4"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("Deck 7, MusterStation 1"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_4"))
 	then
 		messageBodyRes.setContent("Please follow the predefined path to Muster Station 1");
 end
@@ -84,21 +52,21 @@ end
 
 rule "MessageBody_r3_path3_Follow_en"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("Deck 7, Muster Station"))
-		MessageBodyRequest(pathId.equals("PATH_3"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("Deck 7, Muster Station"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_3"))
 	then
 		messageBodyRes.setContent("Please follow PATH_3 to Muster Station");
 end
 
 rule "MessageBody_r3_path4_Follow_en"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(pathId.equals("PATH_4"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_4"))
 	then
 		messageBodyRes.setContent("Please remain in your location you are already at the Muster Station");
 end
@@ -108,11 +76,11 @@ end
 
 rule "MessageBody_r3_path2_Follow_en"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("Deck 7, Muster Station"))
-		MessageBodyRequest(pathId.equals("PATH_2"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("Deck 7, Muster Station"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_2"))
 	then
 		messageBodyRes.setContent("Please follow PATH_2 path to Muster Station");
 end
@@ -123,11 +91,11 @@ end
 
 rule "MessageBody_r1_Follow_gr"
 	when
-	    MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("MUSTERSTATION_1"))
-		MessageBodyRequest(pathId.equals("PATH_1"))
+	    MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("MUSTERSTATION_1"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_1"))
 	then
 		messageBodyRes.setContent("Ακολουθήστε τον προκαθορισμένο δρόμο διαφυφής για το Σταθμό Συγκέτρωσης 1");
 end
@@ -138,89 +106,210 @@ end
 
 // ***************** REAL RULES ************************
 
+rule "Alert_Passengers_en"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("5.1"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+	then
+		messageBodyRes.setContent("<h3>Emergency Alert</h3><div><b>Fire Onboard. Prepare for immediate evacuation. <span style='color: red'>This is not a drill!!</span></b></div>");
+		System.out.println("Rule Alert_Passengers_en used");
+end
+
+rule "Alert_Passengers_en2"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("5.11"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+	then
+		messageBodyRes.setContent("<h3>Emergency Alert</h3><div><b>Fire Onboard. Prepare for immediate evacuation. <span style='color: red'>This is not a drill!!</span></b></div>");
+		System.out.println("Alert_Passengers_en2");
+		messageBodyRes.setVisualAid("person_running.jpg");
+end
+
+rule "Alert_Passengers_en3"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("5.12"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+	then
+		messageBodyRes.setContent("<h3>Emergency Alert</h3><div><span style='color: red'><b>Remain calm and stay where you are!!</span> You will receive instructions in you phone in a few seconds!</b></div>");
+		System.out.println("Alert_Passengers_en2");
+		messageBodyRes.setVisualAid("phone.jpg");
+end
+
+
+
+
+rule "Alert_Passengers_gr"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("5.1"))
+		MessageBodyRequest(language != null && language.equals("gr"))
+	then
+		messageBodyRes.setContent("<h3> Ειδοποίηση έκτακτης ανάγκης: εξαιρετικά επείγουσα</h3><div><b>Πυρκαγιά στο πλοίο. Προετοιμαστείτε για άμεση εκκένωση.<span style='color: red'>Δεν πρόκειται για δοκιμαστική άσκηση!!</span></b></div>");
+		System.out.println("Rule Alert_Passengers_gr used");
+end
+
+
+
+
+
+
+// ************ Start of MUSTERING MESSAGE RULES RULES ********************************************************
+
+rule "alert_mustering_passengers_en"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.0"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+	then
+		messageBodyRes.setContent("<h3>Emergency Notification</h3><div><b>  Remain calm and stay where you are!! <span style='color: red'>You will receive instructions in you phone in a few seconds!</span></b></div>");
+		messageBodyRes.setVisualAid("phone.jpg");
+		System.out.println("Rule alert_mustering_passengers_en used");
+end
+
+
+
+
+rule "Inform_Passengers_gr"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.2"))
+		MessageBodyRequest(language != null && language.equals("gr"))
+	then
+		messageBodyRes.setContent("<h3>ιδοποίηση έκτακτης ανάγκης: εξαιρετικά επείγουσα</h3><div><b> <span style='color: red'>Σε περίπτωση που χαθείτε  </span>, ακολουθήστε την ταμπέλα για τον Σταθμό Συγκέντρωσης Β. Θα βρείτε σωσίβια εκεί.</b></div>");
+		messageBodyRes.setVisualAid("muster-point.jpg");
+		System.out.println("Rule Inform_Passengers_gr used");
+end
+
+rule "Inform_Passengers_en"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.2"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+	then
+		messageBodyRes.setContent("<h3> Emergency Notification</h3><div><b> <span style='color: red'>Ιf you get lost </span>follow this sign to Muster Station D. Lifejackets are there.</b></div>");
+		messageBodyRes.setVisualAid("muster-point.jpg");
+		System.out.println("Rule Inform_Passengers_en used");
+end
+
+
+// ************ EMBARKATION RULES ********************************************************
+rule "Embarkation_en"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("7.1"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+	then
+		messageBodyRes.setContent("<h3>Embarkation Instructions</h3><div> <span style='color:red'>Your Embarkation Group is 1</span>. Follow the crew's instructions to find your assembly area.</div>");
+		System.out.println("Rule Embarkation_en used");
+end
+
+rule "Embarkation_gr"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("7.1"))
+		MessageBodyRequest(language != null && language.equals("gr"))
+	then
+		messageBodyRes.setContent("<h3>Embarkation Instructions</h3><div> <span style='color:red'>Ανήκετε στην ομάδα επιβίβασης 1.</span> Ακολουθήστε τις οδηγίες του πληρώματος για να βρείτε το σημείο συγκέντρωσης της ομάδας σας.</div>");
+		System.out.println("Rule Embarkation_gr used");
+end
+
+rule "Embarkation_part_2en"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("7.2"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+	then
+		messageBodyRes.setContent(" <h3>Embarkation Instructions</h3><div> <span style='color:red'> Group 1 passengers move now  </span>to the Embarkation station B. Keep your lifejacket on at all times.</div>");
+		System.out.println("Rule Embarkation_en used");
+end
+
+rule "Embarkation_part_2_gr"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("7.2"))
+		MessageBodyRequest(language != null && language.equals("gr"))
+	then
+		messageBodyRes.setContent("<h3>Embarkation Instructions</h3><div> <span style='color:red'>Οι επιβάτες της ομάδας 1 </span> να μεταβούν τώρα στο Σταθμό Eπιβίβασης Β. Διατηρήστε το σωσίβιό σας καθ' όλη τη διάρκεια.</div>");
+		System.out.println("Rule Embarkation_gr used");
+end
+
+
+// ******************* MUSTERING RULES ************************************************
 
 rule "elyros_9_9BG1"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P1"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P1"))
 		MessageBodyRequest(geofence != null && geofence.equals("9BG1"))
 	then
-		messageBodyRes.setContent( "Access to Muster Station Muster Station B is via the following path: \n" +
-		"Exit the VIP Lounge Area and find the staircase on your left. Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent( "<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path: </div>" +
+		"<div>Exit the VIP Lounge Area and find the staircase on your left. Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
-			System.out.println("Rule elyros_9_9BG1 used");
+		System.out.println("Rule elyros_9_9BG1 used");
 end
 
 rule "elyros_9_S9-8.1"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P1"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P1"))
 		MessageBodyRequest(geofence != null && geofence.equals("S9-8.1"))
 	then
-		messageBodyRes.setContent( "Access to Muster Station Muster Station B is via the following path: \n" +
-		"Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent( "<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_9_S9-8.1 used");
 end
 rule "elyros_9_S8-7.1"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P1") || pathId.equals("PATH_P2") || pathId.equals("PATH_P3") || pathId.equals("PATH_P4") || pathId.equals("PATH_P5") || pathId.equals("PATH_P6"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P1") || pathId != null && pathId.equals("PATH_P2") || pathId != null && pathId.equals("PATH_P3") || pathId != null && pathId.equals("PATH_P4") || pathId != null && pathId.equals("PATH_P5") || pathId != null && pathId.equals("PATH_P6"))
 		MessageBodyRequest(geofence != null && geofence.equals("S8-7.1"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_9_S8-7.1 used");
 end
 rule "elyros_9_S7-6.1"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P1") || pathId.equals("PATH_P2") || pathId.equals("PATH_P3") || pathId.equals("PATH_P4") || pathId.equals("PATH_P5") || pathId.equals("PATH_P6"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P1") || pathId != null && pathId.equals("PATH_P2") || pathId != null && pathId.equals("PATH_P3") || pathId != null && pathId.equals("PATH_P4") || pathId != null && pathId.equals("PATH_P5") || pathId != null && pathId.equals("PATH_P6"))
 		MessageBodyRequest(geofence != null && geofence.equals("S7-6.1"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Use the door in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_9_S7-6.1 used");
 end
 rule "elyros_9_7BG4"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P1") || pathId.equals("PATH_P2") || pathId.equals("PATH_P3") || pathId.equals("PATH_P4") || pathId.equals("PATH_P5") || pathId.equals("PATH_P6"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P1") || pathId != null && pathId.equals("PATH_P2") || pathId != null && pathId.equals("PATH_P3") || pathId != null && pathId.equals("PATH_P4") || pathId != null && pathId.equals("PATH_P5") || pathId != null && pathId.equals("PATH_P6"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG4"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Move straight for 20 meters to enter the Master station area.");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Move straight for 20 meters to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_9_7BG4 used");
 end
 rule "elyros_9_7BG5"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P1"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P1"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG5"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Move straight for 10 meters to enter the Master station area.");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Move straight for 10 meters to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_9_7BG5 used");
 end
@@ -231,28 +320,28 @@ end
 //PATH_2
 rule "elyros_8_8G1"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P2"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P2"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G1"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 rule "elyros_8_S8-7.1"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P2"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P2"))
 		MessageBodyRequest(geofence != null && geofence.equals("S8-7.1"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
@@ -261,15 +350,15 @@ end
 
 rule "elyros_8_8G2"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P3"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P3"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G2"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
@@ -277,15 +366,15 @@ end
 
 rule "elyros_8_8G3"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P4"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P4"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G3"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
@@ -293,15 +382,15 @@ end
 
 rule "elyros_8_8G4"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P5"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P5"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G4"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
@@ -309,15 +398,15 @@ end
 
 rule "elyros_8_8G5"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P6"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P6"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G5"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
@@ -326,99 +415,99 @@ end
 
 rule "elyros_8_8G6"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P7"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G6"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_S8-7.2"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7") || pathId != null && pathId.equals("PATH_P8"))
 		MessageBodyRequest(geofence != null && geofence.equals("S8-7.2"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_7BG1"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8") || pathId.equals("PATH_P9") || pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7") || pathId != null && pathId.equals("PATH_P8") || pathId != null && pathId.equals("PATH_P9") || pathId != null && pathId.equals("PATH_P10")|| pathId != null && pathId.equals("PATH_P11"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG1"))
 	then
-	    messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-	    "Move straight for 150 meters to enter the Master station area. ");
+	    messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+	    "<div>Move straight for 150 meters to enter the Master station area.</div>");
 	    messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_7BG2"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8"))
-		MessageBodyRequest(geofence != null && geofence.equals("7BG2")|| pathId.equals("PATH_P9")|| pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7") || pathId != null && pathId.equals("PATH_P8"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG2")|| pathId != null && pathId.equals("PATH_P9")|| pathId != null && pathId.equals("PATH_P10")|| pathId != null && pathId.equals("PATH_P11"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Walk 120 meters in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Walk 120 meters in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_7BG3"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8")|| pathId.equals("PATH_P9")|| pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7") || pathId != null && pathId.equals("PATH_P8")|| pathId != null && pathId.equals("PATH_P9")|| pathId != null && pathId.equals("PATH_P10")|| pathId != null && pathId.equals("PATH_P11"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG3"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Walk 100 meters in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Walk 100 meters in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_7BG4"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8")|| pathId.equals("PATH_P9")|| pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7") || pathId != null && pathId.equals("PATH_P8")|| pathId != null && pathId.equals("PATH_P9")|| pathId != null && pathId.equals("PATH_P10")|| pathId != null && pathId.equals("PATH_P11"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG4"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Walk 70 meters in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Walk 70 meters in front of you to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_7BG5"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P7") || pathId.equals("PATH_P8") || pathId.equals("PATH_P9")|| pathId.equals("PATH_P10")|| pathId.equals("PATH_P11"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7") || pathId != null && pathId.equals("PATH_P8") || pathId != null && pathId.equals("PATH_P9")|| pathId != null && pathId.equals("PATH_P10")|| pathId != null && pathId.equals("PATH_P11"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG5"))
 	then
-		messageBodyRes.setContent( "Access to Muster Station Muster Station B is via the following path: \n" +
-		"Walk 50 meters in front of you to enter the Master station area. ");
+		messageBodyRes.setContent( "<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Walk 50 meters in front of you to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
@@ -428,15 +517,15 @@ end
 
 rule "elyros_8_8G7"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P8"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P8"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G7"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
@@ -446,29 +535,29 @@ end
 // PATH_9
 rule "elyros_8_8G8"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P9"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P9"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G8"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
 rule "elyros_8_S8-7.3"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("S8-7.3"))
-		MessageBodyRequest(pathId.equals("PATH_P9") || pathId.equals("PATH_P10") || pathId.equals("PATH_P11") )
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("S8-7.3"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P9") || pathId != null && pathId.equals("PATH_P10") || pathId != null && pathId.equals("PATH_P11") )
 		MessageBodyRequest(geofence != null && geofence.equals("S8-7.3"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
@@ -476,15 +565,15 @@ end
 
 rule "elyros_8_8G9"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P10"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P10"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G9"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
@@ -492,15 +581,15 @@ end
 
 rule "elyros_8_8G10"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P11"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P11"))
 		MessageBodyRequest(geofence != null && geofence.equals("8G10"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 end
 
@@ -510,169 +599,169 @@ end
 
 rule "elyros_7_7DG1"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7DG4"))
-		MessageBodyRequest(pathId.equals("PATH_P12"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7DG4"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P12"))
 		MessageBodyRequest(geofence != null && geofence.equals("7DG1"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Move straight for 150 meters to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Move straight for 150 meters to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule aelyros_7_7DG1 used");
 end
 
 rule "elyros_7_7DG2"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7DG4"))
-		MessageBodyRequest(pathId.equals("PATH_P13"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7DG4"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P13"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Move straight for 100 meters to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Move straight for 100 meters to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_7_7DG2 used");
 end
 
 rule "elyros_7_7DG3"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7DG4"))
-		MessageBodyRequest(pathId.equals("PATH_P14"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7DG4"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P14"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Move straight for 50 meters to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Move straight for 50 meters to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_7_7DG3 used");
 end
 
 rule "elyros_7_7DG4"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7DG4"))
-		MessageBodyRequest(pathId.equals("PATH_P15"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7DG4"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P15"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"You are in the Master Station area. Follow the crew and the rest of the passengers.");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>You are in the Master Station area. Follow the crew and the rest of the passengers</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_7_7DG4 used");
 end
 
 rule "elyros_7_7DG3_alt"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P16"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P16"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Move straight for 200 meters to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Move straight for 200 meters to enter the Master station area.</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_7_7DG3_alt used");
 end
 
 rule "elyros_7_7CG1_alt"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P17"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P17"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Move straight for 150 meters to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Move straight for 150 meters to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_7_7DG1_alt used");
 end
 
 rule "elyros_7_7CG2_alt"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P18"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P18"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Move straight for 100 meters to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Move straight for 100 meters to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_7_7DG2_alt used");
 end
 
 rule "elyros_7_7BG1"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P19"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P19"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Move straight for 70 meters to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Move straight for 70 meters to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_7_7BG1 used");
 end
 
 rule "elyros_7_7BG2"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P20"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P20"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Move straight for 50 meters to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Move straight for 50 meters to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_7_7BG2 used");
 end
 
 rule "elyros_7_7BG3"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P21"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P21"))
 	then
-	messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-	"Move straight for 40 meters to enter the Master station area. ");
+	messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+	"<div>Move straight for 40 meters to enter the Master station area</div>");
 	messageBodyRes.setVisualAid("image1.png");
 	System.out.println("Rule elyros_7_7BG3 used");
 end
 
 rule "elyros_7_7BG5"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P22"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P22"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Move straight for 20 meters to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Move straight for 20 meters to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_7_7BG5 used");
 end
 
 rule "elyros_7_7BG6"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
 		MessageBodyRequest(geofence != null && geofence.equals("7BG6"))
 	then
 		messageBodyRes.setContent(
-		"You are in the Master Station area. Follow the crew and the rest of the passengers.");
+		"<h3>Mustering Instructions</h3><div>You are in the Master Station area. Follow the crew and the rest of the passengers</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_7_7BG6 used");
 end
@@ -680,30 +769,154 @@ end
 
 rule "elyros_7_7DG1, 7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P24"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P24"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Move straight for 200 meters to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Move straight for 200 meters to enter the Master station area</div> ");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_7_7DG1, 7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6 used");
 end
 
 rule "elyros_7_7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6"
 	when
-		MessageBodyRequest(messageCode.equals("6.3"))
-		MessageBodyRequest(!language.equals("gr"))
-		MessageBodyRequest(action.equals("FOLLOW"))
-		MessageBodyRequest(musteringStation.equals("7BG6"))
-		MessageBodyRequest(pathId.equals("PATH_P25"))
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P25"))
 	then
-		messageBodyRes.setContent("Access to Muster Station Muster Station B is via the following path: \n" +
-		"Move straight for 150 meters to enter the Master station area. ");
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Go now to the Muster Station 'D'. Access is via the following path:</div>" +
+		"<div>Move straight for 150 meters to enter the Master station area</div>");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_7_7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6 used");
 end
 
 
+// START  -------->D9 NEW  RULES<----------------
+rule "PATH_26_Message"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("9CG0"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P26"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Access to Muster Station Muster Station  is via the following path:</div>" +
+		"<div>Exit the room you are. Turn RIGHT. Move STRAIGHT pass the doors to enter the Muster Station</div>");
+		messageBodyRes.setVisualAid("image_p26.png");
+		System.out.println("Rule PATH_26_Message used");
+end
+
+rule "PATH_27_Message"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("9CG0"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P27"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Access to Muster Station Muster Station  is via the following path:</div>" +
+		"<div>Exit the room you are. Turn RIGHT. Move STRAIGHT pass the doors to enter the Muster Station</div>");
+		messageBodyRes.setVisualAid("image_p27.png");
+		System.out.println("Rule PATH_27_Message used");
+end
+
+rule "PATH_28_Message"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("9CG0"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P28"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Access to Muster Station Muster Station  is via the following path:</div>" +
+		"<div>Exit the room via the doors leading to the exterior.</div>");
+		messageBodyRes.setVisualAid("image_p28.png");
+		System.out.println("Rule PATH_28_Message used");
+end
+
+rule "PATH_29_Message"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("9CG0"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P29"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Access to Muster Station Muster Station  is via the following path:</div>" +
+		"<div>Exit your cabin. Turn LEFT. Use the door and exit via the doors leading to the exterior of the ship</div>");
+		messageBodyRes.setVisualAid("image_p29.png");
+		System.out.println("Rule PATH_29_Message used");
+end
+
+rule "PATH_30_Message"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("9CG0"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P30"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Access to Muster Station Muster Station  is via the following path:</div>" +
+		"<div>Exit your cabin. Turn Right. Use the door and exit via the doors leading to the exterior of the ship</div>");
+		messageBodyRes.setVisualAid("image_p30.png");
+		System.out.println("Rule PATH_30_Message used");
+end
+
+rule "PATH_31_Message"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("9CG0"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P31"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Access to Muster Station Muster Station  is via the following path:</div>" +
+		"<div>Exit the room. Turn RIGHT. Use the DOOR and exit via the DOOR leading to the exterior of the ship on your LEFT</div>");
+		messageBodyRes.setVisualAid("image_p31.png");
+		System.out.println("Rule PATH_31_Message used");
+end
+
+rule "PATH_32_Message"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("9CG0"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P32"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Access to Muster Station Muster Station  is via the following path:</div>" +
+		"<div>Exit the room. Turn LEFT. Use the DOOR and exit via the DOOR leading to the exterior of the ship on your RIGHT</div>");
+		messageBodyRes.setVisualAid("image_p32.png");
+		System.out.println("Rule PATH_32_Message used");
+end
+
+rule "PATH_33_Message"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("9CG0"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P33"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Access to Muster Station Muster Station  is via the following path:</div>" +
+		"<div>Exit via the DOOR leading to the exterior of the ship on your RIGHT</div>");
+		messageBodyRes.setVisualAid("image_p33.png");
+		System.out.println("Rule PATH_33_Message used");
+end
+
+rule "PATH_34_Message"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("9CG0"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P34"))
+	then
+		messageBodyRes.setContent("<div>You are in the Muster Station. Follow the instructions of the Crew.</div>");
+		System.out.println("Rule PATH_34_Message used");
+end

@@ -17,6 +17,7 @@ rule "r1"
 		PhaseTask(task.equals("1"))
 	then
 		messageObject.setType("t1");
+		System.out.println("Rule r1 used");
 end
 
 rule "r2"
@@ -26,6 +27,7 @@ rule "r2"
 	then
 		messageObject.setMessageCode("4.1");
 		messageObject.setAudience("crew");
+		System.out.println("Rule r2 used");
 end
 
 rule "r3"
@@ -35,7 +37,61 @@ rule "r3"
 	then
 		messageObject.setMessageCode("5.1");
 		messageObject.setAudience("passengers");
+		System.out.println("Rule r3 used");
 end
+
+
+rule "r3.1"
+	when
+		PhaseTask(phase.equals("5"))
+		PhaseTask(task.equals("5.11"))
+	then
+		messageObject.setMessageCode("5.11");
+		messageObject.setAudience("passengers");
+		System.out.println("Rule r3.1 used");
+end
+
+
+rule "r3.2"
+	when
+		PhaseTask(phase.equals("5"))
+		PhaseTask(task.equals("5.12"))
+	then
+		messageObject.setMessageCode("5.12");
+		messageObject.setAudience("passengers");
+		System.out.println("Rule r3.2 used");
+end
+
+
+rule "r7"
+	when
+		PhaseTask(task.equals("7.1"))
+	then
+		messageObject.setMessageCode("7.1");
+		messageObject.setAudience("both");
+		System.out.println("Rule r7 used");
+end
+
+
+rule "r7.2"
+	when
+		PhaseTask(task.equals("7.2"))
+	then
+		messageObject.setMessageCode("7.2");
+		messageObject.setAudience("both");
+		System.out.println("Rule r72 used");
+end
+
+
+rule "r6"
+	when
+		PhaseTask(task.equals("6.0"))
+	then
+		messageObject.setMessageCode("6.0");
+		messageObject.setAudience("passengers");
+		System.out.println("Rule r0 used");
+end
+
 
 rule "r4"
 	when
@@ -43,6 +99,7 @@ rule "r4"
 	then
 		messageObject.setMessageCode("6.2");
 		messageObject.setAudience("passengers");
+		System.out.println("Rule r4 used");
 end
 
 rule "r5"
@@ -51,4 +108,5 @@ rule "r5"
 	then
 		messageObject.setMessageCode("6.3");
 		messageObject.setAudience("passengers");
+		System.out.println("Rule r5 used");
 end

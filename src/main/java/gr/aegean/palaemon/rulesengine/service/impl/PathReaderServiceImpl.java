@@ -65,7 +65,7 @@ public class PathReaderServiceImpl implements PathReaderService {
             log.error(ex.getLocalizedMessage());
         }
 
-        Collections.sort(availablePaths.getPaths(), new PathSorter());
+        availablePaths.getPaths().sort(new PathSorter());
         return availablePaths;
     }
 }
