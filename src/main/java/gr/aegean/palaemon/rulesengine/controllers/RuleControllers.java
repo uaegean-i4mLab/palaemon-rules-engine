@@ -69,6 +69,7 @@ public class RuleControllers {
             requests.setLanguage(passengerLanguage);
             requests.setMusteringStation(musterStation);
             requests.setGeofence(geofence);
+            requests.setAssignmentType(messageBodyRequests.getAssignmentType());
             MessageBodyResponse mbResponse = new MessageBodyResponse();
 //                log.info("making MessageBODY REQUEST with {}", messageBodyRequests);
             messageBodyService.getMessageBody(requests, mbResponse);

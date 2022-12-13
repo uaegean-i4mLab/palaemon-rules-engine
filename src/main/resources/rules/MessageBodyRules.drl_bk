@@ -120,10 +120,31 @@ rule "Alert_Passengers_en"
 		MessageBodyRequest(language != null && !language.equals("gr"))
 		MessageBodyRequest(assignmentType == null)
 	then
-		//messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Emergency Alert</h2><div style='font-size: x-large;'><b >Fire Onboard. Prepare for immediate evacuation. <span style='color: red'>This is not a drill!</span></b><div>You will receive instructions on your phone in a few seconds.</div> </div></main>:: sound: siren");
-		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'></h2><div style='font-size: x-large;'><b ><span style='color: red'></span></b><div></div> </div></main>:: sound: siren");
-		messageBodyRes.setVisualAid("alert.png");
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Emergency Alert</h2><div style='font-size: x-large;'><b >Fire Onboard. Prepare for immediate evacuation. <span style='color: red'>This is not a drill!!</span></b></div></main>:: sound: siren");
 		System.out.println("Rule Alert_Passengers_en used");
+end
+
+rule "Alert_Passengers_en2"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("5.11"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(assignmentType == null)
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Emergency Alert</h2><div style='font-size: x-large;'><b >Fire Onboard. Prepare for immediate evacuation. <span style='color: red'>This is not a drill!!</span></b></div></main>:: sound: siren");
+		messageBodyRes.setContent("");
+		System.out.println("Alert_Passengers_en2");
+		messageBodyRes.setVisualAid("alert.png");
+end
+
+rule "Alert_Passengers_en3"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("5.12"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(assignmentType == null)
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Emergency Alert</h2><div style='font-size: x-large;'><b >Remain calm and stay where you are!!<span style='color: red'> You will receive instructions in you phone in a few seconds!</span></b></div></main>:: sound: siren");
+		System.out.println("Alert_Passengers_en2");
+		messageBodyRes.setVisualAid("phone.jpg");
 end
 
 
@@ -136,7 +157,6 @@ rule "Alert_Passengers_gr"
 		MessageBodyRequest(assignmentType == null)
 	then
 		messageBodyRes.setContent("<h3> Ειδοποίηση έκτακτης ανάγκης: εξαιρετικά επείγουσα</h3><div><b>Πυρκαγιά στο πλοίο. Προετοιμαστείτε για άμεση εκκένωση.<span style='color: red'>Δεν πρόκειται για δοκιμαστική άσκηση!!</span></b></div>");
-		messageBodyRes.setVisualAid("alert.png");
 		System.out.println("Rule Alert_Passengers_gr used");
 end
 
@@ -929,8 +949,7 @@ rule "PATH_28_Message"
 	then
 		 messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
                                           "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
-                                            "<div>Exit your cabin and turn left. Move straight for 25 meters and cross the door to the Muster Station.</div>"+
-
+                                          "<div>Exit your cabin and turn left. Move straight for 5 meters and cross the door to the Muster Station.</div>"+
                                           "</main>:: sound: siren");
 
 		messageBodyRes.setVisualAid("image_p28.png");
@@ -948,7 +967,7 @@ rule "PATH_29_Message"
 	then
 		 messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
                                           "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
-                                        "<div>Exit your cabin and turn left. Move straight for 5 meters and cross the door to the Muster Station.</div>"+
+                                          "<div>Exit your cabin and turn left. Move straight for 15 meters and cross the door on your right. Turn left and move straight for 5 meters. Turn right and move straight for 10 meters. Turn left and move straight for 10 meters. Cross the door and turn left. Move straight for 10 meters and cross the door to the Muster Station.</div>"+
                                           "</main>:: sound: siren");
 
 		messageBodyRes.setVisualAid("image_p29.png");
@@ -966,7 +985,7 @@ rule "PATH_30_Message"
 	then
 		 messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
                                           "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
-                                          "<div>Move straight and cross the first door on your left. Turn right, move straight for 15 meters and cross the door to the Muster Station.</div>"+
+                                          "<div>Move straight and cross the door at the end of the hallway. Turn right and cross the first door on your right. Move straight for 40 meters and cross the door to the Muster Station.</div>"+
                                           "</main>:: sound: siren");
 
 		messageBodyRes.setVisualAid("image_p30.png");
@@ -1026,7 +1045,8 @@ rule "PATH_33_Message"
                                           "<div>You are at the Muster Station. Stay here.</div>"+
                                           "</main>:: sound: siren");
 
-	    System.out.println("Rule PATH_33_Message used");
+		messageBodyRes.setVisualAid("image_p33.png");
+		System.out.println("Rule PATH_33_Message used");
 end
 
 

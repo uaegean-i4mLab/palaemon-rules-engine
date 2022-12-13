@@ -27,5 +27,6 @@ musteringStations: list of MusteringStation names with key passenger hashedMacAd
     private String action;
 
     private String geofence;
+    private String assignmentType;
 
 }

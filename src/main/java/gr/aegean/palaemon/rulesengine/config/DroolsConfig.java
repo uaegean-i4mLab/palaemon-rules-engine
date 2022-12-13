@@ -55,6 +55,7 @@ public class DroolsConfig {
 //        kieFileSystem.write(ResourceFactory.newClassPathResource("rules/Phase_Task_Rules.xls"));
         kieFileSystem.write(ResourceFactory.newClassPathResource("rules/Phase_Rules.drl"));
         kieFileSystem.write(ResourceFactory.newClassPathResource("rules/MessageBodyRules.drl"));
+        kieFileSystem.write(ResourceFactory.newClassPathResource("rules/MessageBodyRulesBlocked.drl"));
         kieFileSystem.write(ResourceFactory.newClassPathResource("rules/MusteringRules.drl"));
         KieBuilder kb = kieServices.newKieBuilder(kieFileSystem);
         kb.buildAll();

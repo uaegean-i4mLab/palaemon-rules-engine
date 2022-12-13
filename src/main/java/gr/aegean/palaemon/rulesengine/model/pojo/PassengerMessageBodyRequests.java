@@ -18,5 +18,6 @@ public class PassengerMessageBodyRequests {
     Map<String,String> musterStation; //key is passenger hashMacAddress value the MessageCode that is to be sent to the passenger
     Map<String,String> currentGeofences; // key is passenger hashMacAddress value is the geofence the user is currently at
     List<String> blockedGeofences;
+    String assignmentType;
 
 }

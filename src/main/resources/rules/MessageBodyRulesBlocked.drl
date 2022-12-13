@@ -1,0 +1,685 @@
+package gr.aegean.palaemon.rulesengine.rules;
+
+import gr.aegean.palaemon.rulesengine.model.MessageBodyRequest;
+import gr.aegean.palaemon.rulesengine.model.MessageBodyResponse;
+
+global MessageBodyResponse messageBodyRes;
+
+
+
+
+
+// ************ Start of MUSTERING MESSAGE RULES RULES ********************************************************
+
+
+
+
+
+// ******************* MUSTERING RULES ************************************************
+
+rule "update_elyros_9_9BG1"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P1"))
+		MessageBodyRequest(geofence != null && geofence.equals("9BG1"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</b></div>"+
+                                  "<div>Exit the VIP Lounge Area and find the staircase on your left. Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_9_9BG1 used");
+end
+
+rule "update_elyros_9_S9-8.1"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P1"))
+		MessageBodyRequest(geofence != null && geofence.equals("S9-8.1"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</b></div>"+
+                                  "<div>Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_9_S9-8.1 used");
+end
+rule "update_elyros_9_S8-7.1"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P1") || pathId != null && pathId.equals("PATH_P2") || pathId != null && pathId.equals("PATH_P3") || pathId != null && pathId.equals("PATH_P4") || pathId != null && pathId.equals("PATH_P5") || pathId != null && pathId.equals("PATH_P6"))
+		MessageBodyRequest(geofence != null && geofence.equals("S8-7.1"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</b></div>"+
+                "<div>Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>"+
+                "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_9_S8-7.1 used");
+end
+rule "update_elyros_9_S7-6.1"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P1") || pathId != null && pathId.equals("PATH_P2") || pathId != null && pathId.equals("PATH_P3") || pathId != null && pathId.equals("PATH_P4") || pathId != null && pathId.equals("PATH_P5") || pathId != null && pathId.equals("PATH_P6"))
+		MessageBodyRequest(geofence != null && geofence.equals("S7-6.1"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</b></div>"+
+                                  "<div>Use the door in front of you to enter the Master station area.</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_9_S7-6.1 used");
+end
+rule "update_elyros_9_7BG4"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P1") || pathId != null && pathId.equals("PATH_P2") || pathId != null && pathId.equals("PATH_P3") || pathId != null && pathId.equals("PATH_P4") || pathId != null && pathId.equals("PATH_P5") || pathId != null && pathId.equals("PATH_P6"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG4"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</b></div>"+
+                                  "<div>Move straight for 20 meters to enter the Master station area.</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_9_7BG4 used");
+end
+rule "update_elyros_9_7BG5"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P1"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG5"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</b></div>"+
+                                  "<div>Move straight for 10 meters to enter the Master station area.</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_9_7BG5 used");
+end
+
+
+// -------------->CABIN RULES <-------------
+
+//PATH_2
+rule "update_elyros_8_8G1"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P2"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G1"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+rule "update_elyros_8_S8-7.1"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P2"))
+		MessageBodyRequest(geofence != null && geofence.equals("S8-7.1"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+
+//PATH_3
+
+rule "update_elyros_8_8G2"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P3"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G2"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+//PATH_4
+
+rule "update_elyros_8_8G3"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P4"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G3"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+//PATH_5
+
+rule "update_elyros_8_8G4"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P5"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G4"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+//PATH_6
+
+rule "update_elyros_8_8G5"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P6"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G5"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+
+//PATH_7
+
+rule "update_elyros_8_8G6"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G6"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+rule "update_elyros_8_S8-7.2"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7") || pathId != null && pathId.equals("PATH_P8"))
+		MessageBodyRequest(geofence != null && geofence.equals("S8-7.2"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+rule "update_elyros_8_7BG1"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7") || pathId != null && pathId.equals("PATH_P8") || pathId != null && pathId.equals("PATH_P9") || pathId != null && pathId.equals("PATH_P10")|| pathId != null && pathId.equals("PATH_P11"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG1"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+	    messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+	    "<div>Move straight for 150 meters to enter the Master station area.</div>");
+	    messageBodyRes.setVisualAid("image1.png");
+end
+
+rule "update_elyros_8_7BG2"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7") || pathId != null && pathId.equals("PATH_P8"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG2")|| pathId != null && pathId.equals("PATH_P9")|| pathId != null && pathId.equals("PATH_P10")|| pathId != null && pathId.equals("PATH_P11"))
+	    MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Walk 120 meters in front of you to enter the Master station area.</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+rule "update_elyros_8_7BG3"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7") || pathId != null && pathId.equals("PATH_P8")|| pathId != null && pathId.equals("PATH_P9")|| pathId != null && pathId.equals("PATH_P10")|| pathId != null && pathId.equals("PATH_P11"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG3"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Walk 100 meters in front of you to enter the Master station area.</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+rule "update_elyros_8_7BG4"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7") || pathId != null && pathId.equals("PATH_P8")|| pathId != null && pathId.equals("PATH_P9")|| pathId != null && pathId.equals("PATH_P10")|| pathId != null && pathId.equals("PATH_P11"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG4"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Walk 70 meters in front of you to enter the Master station area</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+rule "update_elyros_8_7BG5"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P7") || pathId != null && pathId.equals("PATH_P8") || pathId != null && pathId.equals("PATH_P9")|| pathId != null && pathId.equals("PATH_P10")|| pathId != null && pathId.equals("PATH_P11"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG5"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent( "<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Walk 50 meters in front of you to enter the Master station area</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+
+
+//PATH_8
+
+rule "update_elyros_8_8G7"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P8"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G7"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+
+
+
+// PATH_9
+rule "update_elyros_8_8G8"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P9"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G8"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your right. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+rule "update_elyros_8_S8-7.3"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("S8-7.3"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P9") || pathId != null && pathId.equals("PATH_P10") || pathId != null && pathId.equals("PATH_P11") )
+		MessageBodyRequest(geofence != null && geofence.equals("S8-7.3"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+//PATH_10
+
+rule "update_elyros_8_8G9"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P10"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G9"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+//PATH_11
+
+rule "update_elyros_8_8G10"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P11"))
+		MessageBodyRequest(geofence != null && geofence.equals("8G10"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<h3>Mustering Instructions</h3><div>Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</div>" +
+		"<div>Exit your Cabin and find the staircase on your left. Use this stair one level down to reach Deck 7. Use the door in front of you to enter the Master station area</div>");
+		messageBodyRes.setVisualAid("image1.png");
+end
+
+
+// end of -------->CABIN RULES<----------------
+
+
+rule "update_elyros_7_7DG1"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7DG4"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P12"))
+		MessageBodyRequest(geofence != null && geofence.equals("7DG1"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'D'. Access is via the following path:</b></div>"+
+                                  "<div>Move straight for 150 meters to enter the Master station area.</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule aelyros_7_7DG1 used");
+end
+
+rule "update_elyros_7_7DG2"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7DG4"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P13"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'D'. Access is via the following path:</b></div>"+
+                                  "<div>Move straight for 100 meters to enter the Master station area.</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG2 used");
+end
+
+rule "update_elyros_7_7DG3"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7DG4"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P14"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'D'. Access is via the following path:</b></div>"+
+                                  "<div>Move straight for 50 meters to enter the Master station area.</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG3 used");
+end
+
+rule "update_elyros_7_7DG4"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7DG4"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P15"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'D'. Access is via the following path:</b></div>"+
+                                  "<div>You are in the Master Station area. Follow the crew and the rest of the passengers</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG4 used");
+end
+
+rule "update_elyros_7_7DG3_alt"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P16"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'D'. Access is via the following path:</b></div>"+
+                                  "<div>Move straight for 200 meters to enter the Master station area.</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG3_alt used");
+end
+
+rule "update_elyros_7_7CG1_alt"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P17"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'D'. Access is via the following path:</b></div>"+
+                                  "<div>Move straight for 150 meters to enter the Master station area.</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG1_alt used");
+end
+
+rule "update_elyros_7_7CG2_alt"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P18"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                 "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'D'. Access is via the following path:</b></div>"+
+                                 "<div>Move straight for 100 meters to enter the Master station area.</div>"+
+                                 "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG2_alt used");
+end
+
+rule "update_elyros_7_7BG1"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P19"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'D'. Access is via the following path:</b></div>"+
+                                  "<div>Move straight for 70 meters to enter the Master station area.</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7BG1 used");
+end
+
+rule "update_elyros_7_7BG2"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P20"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'D'. Access is via the following path:</b></div>"+
+                                  "<div>Move straight for 50 meters to enter the Master station area.</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7BG2 used");
+end
+
+rule "update_elyros_7_7BG3"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P21"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+	messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                               "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'D'. Access is via the following path:</b></div>"+
+                               "<div>Move straight for 40 meters to enter the Master station area.</div>"+
+                               "</main>:: sound: siren");
+	messageBodyRes.setVisualAid("image1.png");
+	System.out.println("Rule elyros_7_7BG3 used");
+end
+
+rule "update_elyros_7_7BG5"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P22"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'D'. Access is via the following path:</b></div>"+
+                                  "<div>Move straight for 20 meters to enter the Master station area.</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7BG5 used");
+end
+
+rule "update_elyros_7_7BG6"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(geofence != null && geofence.equals("7BG6"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent(
+		"<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+        "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</b></div>"+
+        "<div>You are in the Master Station area. Follow the crew and the rest of the passengers</div>"+
+        "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7BG6 used");
+end
+
+
+rule "update_elyros_7_7DG1, 7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P24"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</b></div>"+
+                                  "<div>Move straight for 200 meters to enter the Master station area</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG1, 7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6 used");
+end
+
+rule "update_elyros_7_7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("7BG6"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P25"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering PATH UPDATE</h2>" +
+                                  "<div style='font-size: x-large;'><b >Muster Station HAS CHANGED! Go now to the Muster Station 'B'. Access is via the following path:</b></div>"+
+                                  "<div>Move straight for 150 meters to enter the Master station area</div>"+
+                                  "</main>:: sound: siren");
+		messageBodyRes.setVisualAid("image1.png");
+		System.out.println("Rule elyros_7_7DG2, 7DG3, 7CG1, 7CG2, 7BG1, 7BG2, 7BG6 used");
+end
+
+
+// START  -------->D9 NEW  RULES<----------------
+
+rule "update_PATH_34_Message"
+	when
+		MessageBodyRequest(messageCode != null && messageCode.equals("6.3"))
+		MessageBodyRequest(language != null && !language.equals("gr"))
+		MessageBodyRequest(action!= null && action.equals("FOLLOW"))
+		MessageBodyRequest(musteringStation != null && musteringStation.equals("9CG0"))
+		MessageBodyRequest(pathId != null && pathId.equals("PATH_P34"))
+		MessageBodyRequest(assignmentType != null &&assignmentType.equals("blocked"))
+	then
+		 messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
+                                              "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
+                                              "<div>Exit the VIP Restaurant and turn right. Move straight for 20 meters and cross the first door on your left. Turn right, move straight for 15 meters and cross the door to the Muster Station.</div>"+
+                                              "</main>:: sound: siren");
+
+    		messageBodyRes.setVisualAid("image_p34.png");
+    		System.out.println("Rule PATH_33_Message used");
+end
