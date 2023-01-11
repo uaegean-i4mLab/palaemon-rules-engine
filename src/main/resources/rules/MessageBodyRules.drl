@@ -245,8 +245,8 @@ rule "elyros_9_9BG1"
 		MessageBodyRequest(assignmentType == null)
 	then
 		messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
-                                  "<div style='font-size: x-large;'><b >Go now to the Muster Station 'B'. Access is via the following path:</b></div>"+
-                                  "<div>Exit the VIP Lounge Area and find the staircase on your left. Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area.</div>"+
+                                 // "<div style='font-size: x-large;'><b >Go now to the Muster Station 'B'. Access is via the following path:</b></div>"+
+                                  "<div style='font-size: x-large;'><b >Exit the VIP Lounge Area and find the staircase on your left. Use this stair two levels down to reach Deck 7. Use the door in front of you to enter the Master station area.</b></div>"+
                                   "</main>:: sound: siren");
 		messageBodyRes.setVisualAid("image1.png");
 		System.out.println("Rule elyros_9_9BG1 used");
@@ -892,8 +892,8 @@ rule "PATH_26_Message"
 		MessageBodyRequest(assignmentType == null)
 	then
 		 messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
-                                          "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
-                                          "<div>Exit the VIP Restaurant and turn left. Move straight for 3 meters and cross the door at the end of the hallway. Turn right and cross the first door on your right. Move straight for 40 meters and cross the door to the Muster Station.</div>"+
+                                         // "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
+"<div style='font-size: x-large;'> <b>  <p>Exit Room and turn left </p><p>Cross the Door </p><p>Cross first door on the right </p><p>Move Straight </p><p>Cross Muster Station door </p></b></div>"+
                                           "</main>:: sound: siren");
 
 		messageBodyRes.setVisualAid("image_p26.png");
@@ -910,8 +910,8 @@ rule "PATH_27_Message"
 		MessageBodyRequest(assignmentType == null)
 	then
 		 messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
-                                          "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
-                                          "<div>Exit the Lounge and turn right. Move straight for 5 meters and cross the first door on your left. Turn right, move straight for 15 meters and cross the door to the Muster Station.</div>"+
+                                          "<div style='font-size: x-large;'><b>   <p>Exit Room and turn right. </p><p>Cross fist left door </p><p>Cross Muster Station door </p></b></div>"+
+
                                           "</main>:: sound: siren");
 
 		messageBodyRes.setVisualAid("image_p27.png");
@@ -928,9 +928,8 @@ rule "PATH_28_Message"
 		MessageBodyRequest(assignmentType == null)
 	then
 		 messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
-                                          "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
-                                            "<div>Exit your cabin and turn left. Move straight for 25 meters and cross the door to the Muster Station.</div>"+
-
+                                          //"<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
+                                        "<div style='font-size: x-large;'> <b>  <p>Exit Cabin and turn left </p><p>Cross Muster Station Door </p></b></div>"+
                                           "</main>:: sound: siren");
 
 		messageBodyRes.setVisualAid("image_p28.png");
@@ -947,8 +946,8 @@ rule "PATH_29_Message"
 		MessageBodyRequest(assignmentType == null)
 	then
 		 messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
-                                          "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
-                                        "<div>Exit your cabin and turn left. Move straight for 5 meters and cross the door to the Muster Station.</div>"+
+                                          //"<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
+                                        "<div style='font-size: x-large;'> <b>  <p>Exit Cabin and turn left </p><p>Cross Muster Station Door </p></b></div>"+
                                           "</main>:: sound: siren");
 
 		messageBodyRes.setVisualAid("image_p29.png");
@@ -965,8 +964,8 @@ rule "PATH_30_Message"
 		MessageBodyRequest(assignmentType == null)
 	then
 		 messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
-                                          "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
-                                          "<div>Move straight and cross the first door on your left. Turn right, move straight for 15 meters and cross the door to the Muster Station.</div>"+
+                                          //"<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
+                                          "<div style='font-size: x-large;'> <b>  <p>Cross first left door </p><p>Cross Muster Station Door </p></b></div>"+
                                           "</main>:: sound: siren");
 
 		messageBodyRes.setVisualAid("image_p30.png");
@@ -985,8 +984,8 @@ rule "PATH_31_Message"
 		MessageBodyRequest(assignmentType == null)
 	then
 		 messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
-                                          "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
-                                          "<div>Move straight for 40 meters and cross the door to the Muster Station.</div>"+
+                                          //"<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
+                                          "<div style='font-size: x-large;'> <b>  <p>Exit room and move straight </p><p>Cross Muster Station Door </p></b></div>"+
                                           "</main>:: sound: siren");
 
 		messageBodyRes.setVisualAid("image_p31.png");
@@ -1004,8 +1003,8 @@ rule "PATH_32_Message"
 		MessageBodyRequest(assignmentType == null)
 	then
 		 messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
-                                          "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
-                                          "<div>Move straight and cross the door to the Muster Station.</div>"+
+                                          //"<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
+                                          "<div style='font-size: x-large;'> <b>  <p>Move Straight until the end of the corridor </p><p>Cross Muster Station Door </p></b></div>"+
                                           "</main>:: sound: siren");
 
 		messageBodyRes.setVisualAid("image_p32.png");
@@ -1022,8 +1021,8 @@ rule "PATH_33_Message"
 		MessageBodyRequest(assignmentType == null)
 	then
 		 messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
-                                          "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
-                                          "<div>You are at the Muster Station. Stay here.</div>"+
+                                          //"<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
+                                          "<div style='font-size: x-large;'> <b>  <p>You are at the Muster Station. Stay here! </p></b></div>"+
                                           "</main>:: sound: siren");
 
 	    System.out.println("Rule PATH_33_Message used");
@@ -1040,8 +1039,8 @@ rule "PATH_34_Message"
 		MessageBodyRequest(assignmentType == null)
 	then
 		 messageBodyRes.setContent("<header></header><main><h2 style='color: red; text-align: center;'>Mustering Instructions</h2>" +
-                                          "<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
-                                          "<div>Exit the VIP Restaurant and turn right. Move straight for 20 meters and cross the first door on your left. Turn right, move straight for 15 meters and cross the door to the Muster Station.</div>"+
+                                          //"<div style='font-size: x-large;'><b >Go now to the Muster Station'. Access is via the following path:</b></div>"+
+                                          "<div style='font-size: x-large;'> <b>  <p>Exit room and turn right </p><p>Cross first left door </p> <p>Cross Muster Station door </p></b></div>"+
                                           "</main>:: sound: siren");
 
 		messageBodyRes.setVisualAid("image_p34.png");

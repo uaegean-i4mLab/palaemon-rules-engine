@@ -1,0 +1,22 @@
+logging:
+  level:
+    org.elasticsearch.client.RestClient: ERROR
+
+#logging:
+#  level:
+#    root: INFO
+#    org:
+#      apache:
+#        kafka: INFO
+
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
