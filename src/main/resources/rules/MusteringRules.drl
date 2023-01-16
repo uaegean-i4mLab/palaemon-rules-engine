@@ -502,6 +502,7 @@ rule "PATH_26"
 	    $blocked: List()
 	    $geofence: String()
 	    eval( !$availablePath.containsGeofence($blocked) || $availablePath.onlyStartOfPathBlocked($blocked))
+	    eval( !($availablePath.getGeofences().get(0) ==null) && $availablePath.getGeofences().get(0).equals($geofence))
 	    eval($availablePath.isPreferred())
 	    //ensure that if an assignment has already been made
 	    //by the execution of a previous rule, we do not re-assign it
